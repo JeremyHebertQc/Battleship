@@ -6,8 +6,10 @@
 
 Game::Game()
 {
-	_currentPlayerIndex = 1;
+	_currentPlayerIndex = 0;
 	_gameOver = false;
+
+	srand(time(NULL));
 }
 
 Game::~Game()
