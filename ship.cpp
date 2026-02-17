@@ -33,3 +33,18 @@ Ship::~Ship()
 	_direction = HORIZONTAL;
 	_length = 0;
 }
+
+int Ship::getLength() const
+{
+	return _length;
+}
+
+const Direction& Ship::getDirection() const
+{
+	return _direction;
+}
+
+bool Ship::getSunkStatus() const
+{
+	return _hasSunk;
+}
