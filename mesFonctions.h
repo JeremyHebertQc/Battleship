@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "point.h" // Ajoutez vos fichiers "point.h" et "point.cpp" développés dans un laboratoire précédent
+#include "Point.h" // Ajoutez vos fichiers "point.h" et "point.cpp" développés dans un laboratoire précédent
 
 /********************************/
 /* NE MODIFIEZ PAS CE FICHIER ! */

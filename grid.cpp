@@ -10,6 +10,8 @@ bool Grid::placeShips() {
 	bool collides;
 	int maxX, maxY;
 
+	Ship ships[5]; // TODO : Retirer
+
 	for (int i = 0; i < _nbShips; i++) {
 		do {
 			if ((_ships[i].getLength() > (GRID_WIDTH - 2)) ||
@@ -18,7 +20,7 @@ bool Grid::placeShips() {
 			}
 
 			collides = false;
-			_ships[i].setDirection(Direction(rand() % 2));
+			//_ships[i].setDirection(Direction(rand() % 2));
 
 			if (_ships[i].getDirection() == HORIZONTAL) {
 				maxX = GRID_INNER_MAX_X - _ships[i].getLength();
@@ -34,13 +36,13 @@ bool Grid::placeShips() {
 
 			const int randX = (rand() % (maxX - GRID_INNER_MIN_X + 1) + GRID_INNER_MIN_X);
 			const int randY = (rand() % (maxY - GRID_INNER_MIN_Y + 1) + GRID_INNER_MIN_Y);
-			_ships[i].setPosition(randX, randY);
+			//_ships[i].setPosition(randX, randY);
 
 			for (int j = 0; j < i; j++) {
-				if ((i != j) && _ships[i].checkCollision(_ships[j])) {
+				//if ((i != j) && _ships[i].checkCollision(_ships[j])) {
 					collides = true;
 					break;
-				}
+				//}
 			}
 		} while (collides);
 	}
@@ -62,10 +64,24 @@ void Grid::printShipsStatus(ostream& output) const {
 			goToXY((GRID_SHIPS_STATUS_X), (GRID_SHIPS_STATUS_Y + i));
 		}
 
-		_ships[i - 1].print(output);
+		//_ships[i - 1].print(output);
 	}
 }
 
 /******************************************************/
 /* CODEZ ICI LES AUTRES MÉTHODES DE LA CLASSE "GRID". */
 /******************************************************/
+
+Grid::Grid()
+{
+	_gridOutline.setRectangle(GRID_INNER_MIN_X - 1, GRID_INNER_MIN_Y - 1, GRID_WIDTH, GRID_HEIGHT);
+	_nbShips = 0;
+	_nbMissedHits = 0;
+
+	initShips();
+}
+
+bool Grid::initShips()
+{
+	return false;
+}

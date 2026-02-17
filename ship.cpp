@@ -23,7 +23,7 @@ Ship::Ship(const std::string& name, int length)
 	_name = "name";
 	_x = _y = _hasSunk = false;
 	_direction = HORIZONTAL;
-	_length.setLength(length);
+	//setLength(length);
 }
 
 Ship::~Ship()
