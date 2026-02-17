@@ -7,7 +7,7 @@
 /********************************/
 /* NE MODIFIEZ PAS CE FICHIER ! */
 /* IL EST DÉJÀ COMPLET !        */
-/********************************/
+/********************************///ok
 class Game {
 	private:
 		Grid _grids[GAME_NB_PLAYERS];
