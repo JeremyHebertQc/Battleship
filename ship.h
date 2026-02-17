@@ -34,13 +34,13 @@ class Ship {
 		const Direction& getDirection() const;
 		bool getSunkStatus() const;
 
-//		void setPosition(int x, int y);
+		void setPosition(int x, int y);
 //		void setLength(int length);
-//		void setDirection(const Direction& direction);
+		void setDirection(const Direction& direction);
 //
 //		void rotate();
 //		void hide();
-//		bool checkCollision(const Ship& otherShip) const;
+		bool checkCollision(const Ship& otherShip) const;
 //		int placeHit(const Point& hitPosition);
 //		void print(std::ostream& output) const;
 //		void draw(std::ostream& output) const;

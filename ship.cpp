@@ -48,3 +48,35 @@ bool Ship::getSunkStatus() const
 {
 	return _hasSunk;
 }
+
+void Ship::setPosition(int x, int y)
+{
+	//assert(_x >= 0);
+	//assert(_y >= 0);
+
+	_x = x;
+	_y = y;
+
+	updatePoints();
+}
+
+void Ship::setDirection(const Direction& direction)
+{
+	_direction = direction;
+
+	updatePoints();
+}
+
+bool Ship::checkCollision(const Ship& otherShip) const
+{
+	for (const Point& point : _points)
+	{
+		for (const Point& otherPoint : otherShip._points)
+		{
+			if (point.getX() == otherPoint.getX() && point.getY() == otherPoint.getY())
+				return true;
+		}
+	}
+
+	return false;
+}
