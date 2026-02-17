@@ -1,7 +1,5 @@
 #include "ship.h"
 
-using namespace std;
-
 /********************************************/
 /* NE MODIFIEZ PAS LA MÉTHODE QUI SUIT !    */
 /* ELLE EST DÉJÀ PLEINEMENT FONCTIONNELLE ! */
@@ -18,6 +16,14 @@ void Ship::updatePoints() {
 			_points[i].setY(_y + i);
 		}
 	}
+}
+
+Ship::Ship(const std::string& name, int length)
+{
+	_name = "name";
+	_x = _y = _hasSunk = false;
+	_direction = HORIZONTAL;
+	_length.setLength(length);
 }
 
 /******************************************************/
