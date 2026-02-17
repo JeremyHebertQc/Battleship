@@ -6,13 +6,24 @@
 
 Game::Game()
 {
-	_currentPlayerIndex = 1;
+	_currentPlayerIndex = 0;
 	_gameOver = false;
+
+	srand(time(NULL));
 }
 
 Game::~Game()
 {
-	_grids->~Grid();
 	_currentPlayerIndex = 0;
-	_gameOver = false;
+	_gameOver = true;
+}
+
+void Game::play(std::ostream& sortie)
+{
+	while (!_gameOver)
+	{
+		//*this->draw(std::cout);
+
+		//while()
+	}
 }
