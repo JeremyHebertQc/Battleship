@@ -1,7 +1,5 @@
 #include "ship.h"
 
-using namespace std;
-
 /********************************************/
 /* NE MODIFIEZ PAS LA MÉTHODE QUI SUIT !    */
 /* ELLE EST DÉJÀ PLEINEMENT FONCTIONNELLE ! */
@@ -20,6 +18,33 @@ void Ship::updatePoints() {
 	}
 }
 
-/******************************************************/
-/* CODEZ ICI LES AUTRES MÉTHODES DE LA CLASSE "SHIP". */
-/******************************************************/
+Ship::Ship(const std::string& name, int length)
+{
+	_name = "name";
+	_x = _y = _hasSunk = false;
+	_direction = HORIZONTAL;
+	_length.setLength(length);
+}
+
+Ship::~Ship()
+{
+	_name = "";
+	_x = _y = _hasSunk = false;
+	_direction = HORIZONTAL;
+	_length = 0;
+}
+
+int Ship::getLength() const
+{
+	return _length;
+}
+
+const Direction& Ship::getDirection() const
+{
+	return _direction;
+}
+
+bool Ship::getSunkStatus() const
+{
+	return _hasSunk;
+}
