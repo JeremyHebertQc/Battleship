@@ -29,12 +29,15 @@ class Ship {
 	public:
 		Ship(const std::string& name = "", int length = 0);
 		~Ship();
+
 		int getLength() const;
 		const Direction& getDirection() const;
 		bool getSunkStatus() const;
+
 		void setPosition(int x, int y);
 		void setLength(int length);
 		void setDirection(const Direction& direction);
+
 		void rotate();
 		void hide();
 		bool checkCollision(const Ship& otherShip) const;

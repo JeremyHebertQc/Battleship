@@ -26,6 +26,10 @@ Ship::Ship(const std::string& name, int length)
 	_length.setLength(length);
 }
 
-/******************************************************/
-/* CODEZ ICI LES AUTRES MÉTHODES DE LA CLASSE "SHIP". */
-/******************************************************/
+Ship::~Ship()
+{
+	_name = "";
+	_x = _y = _hasSunk = false;
+	_direction = HORIZONTAL;
+	_length = 0;
+}
