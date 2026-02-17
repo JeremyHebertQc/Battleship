@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "mesConstantes.h"
-#include "point.h" // Ajoutez vos fichiers "point.h" et "point.cpp" développés dans un laboratoire précédent
+#include "Point.h"
 
 /********************************/
 /* NE MODIFIEZ PAS CE FICHIER ! */
@@ -34,18 +34,18 @@ class Ship {
 		const Direction& getDirection() const;
 		bool getSunkStatus() const;
 
-		void setPosition(int x, int y);
-		void setLength(int length);
-		void setDirection(const Direction& direction);
-
-		void rotate();
-		void hide();
-		bool checkCollision(const Ship& otherShip) const;
-		int placeHit(const Point& hitPosition);
-		void print(std::ostream& output) const;
-		void draw(std::ostream& output) const;
-		void read(std::istream& input);
+//		void setPosition(int x, int y);
+//		void setLength(int length);
+//		void setDirection(const Direction& direction);
+//
+//		void rotate();
+//		void hide();
+//		bool checkCollision(const Ship& otherShip) const;
+//		int placeHit(const Point& hitPosition);
+//		void print(std::ostream& output) const;
+//		void draw(std::ostream& output) const;
+//		void read(std::istream& input);
 };
-
-std::ostream& operator<<(std::ostream& output, const Ship& ship);
-std::istream& operator>>(std::istream& input, Ship& ship);
+//
+//std::ostream& operator<<(std::ostream& output, const Ship& ship);
+//std::istream& operator>>(std::istream& input, Ship& ship);
