@@ -13,6 +13,13 @@ enum Direction {
 	VERTICAL
 };
 
+enum HitingShip {
+	HIT_WATER,
+	HIT_SUNK,
+	HIT_TWICE,
+	HIT_STANDARD
+};
+
 class Ship {
 	private:
 		std::string _name;

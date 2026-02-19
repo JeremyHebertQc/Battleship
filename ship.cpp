@@ -5,17 +5,32 @@
 /* ELLE EST DÉJÀ PLEINEMENT FONCTIONNELLE ! */
 /********************************************/
 void Ship::updatePoints() {
-	for (int i = 0; i < _length; i++) {
-		if (_direction == HORIZONTAL) {
+	for (int i = 0; i < _length; i++)
+	{
+		if (_direction == HORIZONTAL)
+		{
 			_points[i].setX(_x + i);
 			_points[i].setY(_y);
 		}
 
-		else {
+		else
+		{
 			_points[i].setX(_x);
 			_points[i].setY(_y + i);
 		}
 	}
+}
+
+void Ship::updateSunkStatus()
+{
+	for (const Point& point : _points)
+	{
+		if (point.getColor() == SHIP_HIT_COLOR)
+			continue;
+		return;
+	}
+
+	_hasSunk = true;
 }
 
 Ship::Ship(const std::string& name, int length)
@@ -95,13 +110,15 @@ void Ship::rotate()
 
 void Ship::hide()
 {
-	for (int i = 0; i < _length; i++) {
-		if (_direction == HORIZONTAL) {
-			_points[i].setColor(SHIP_HIDDEN_COLOR);
+	for (Point& point : _points)
+	{
+		if (_direction == HORIZONTAL)
+		{
+			point.setColor(SHIP_HIDDEN_COLOR);
 		}
-
-		else {
-			_points[i].setColor(SHIP_HIDDEN_COLOR);
+		else
+		{
+			point.setColor(SHIP_HIDDEN_COLOR);
 		}
 	}
 }
@@ -124,24 +141,24 @@ int Ship::placeHit(const Point& hitPosition)
 {
 	
 
-	for (int i = 0; i < _length; i++)
+	for (const Point& point : _points)
 	{
-		if (hitPosition == _points[i])
+		if (hitPosition == point)
 		{
 			if (_hasSunk)
-				return 1;
+				return HIT_SUNK;
 			else if (_points[i].getColor() == SHIP_HIT_COLOR)
-				return 2;
+				return HIT_TWICE;
 			else
 			{
 				_points[i].setColor(SHIP_HIT_COLOR);
 
 				updateSunkStatus();
 
-				return 3;
+				return HIT_STANDARD;
 			}
 		}
 		else
-			return 0;
+			return HIT_WATER;
 	}
 }
