@@ -93,6 +93,19 @@ void Ship::rotate()
 	updatePoints();
 }
 
+void Ship::hide()
+{
+	for (int i = 0; i < _length; i++) {
+		if (_direction == HORIZONTAL) {
+			_points[i].setColor(SHIP_HIDDEN_COLOR);
+		}
+
+		else {
+			_points[i].setColor(SHIP_HIDDEN_COLOR);
+		}
+	}
+}
+
 bool Ship::checkCollision(const Ship& otherShip) const
 {
 	for (const Point& point : _points)

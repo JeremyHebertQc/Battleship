@@ -18,7 +18,9 @@ int main() {
 
 	Ship test("bla", 5);
 
-	test.rotate();
+	test.hide();
+
+
 
 	return 0;
 }
