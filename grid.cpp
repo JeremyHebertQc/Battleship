@@ -10,8 +10,6 @@ bool Grid::placeShips() {
 	bool collides;
 	int maxX, maxY;
 
-	Ship ships[5]; // TODO : Retirer
-
 	for (int i = 0; i < _nbShips; i++) {
 		do {
 			if ((_ships[i].getLength() > (GRID_WIDTH - 2)) ||
@@ -79,6 +77,27 @@ Grid::Grid()
 	_nbMissedHits = 0;
 
 	initShips();
+}
+
+Grid::~Grid()
+{
+	_nbShips = 0;
+	_nbMissedHits = 0;
+}
+
+int Grid::getNbRemainingShips() const
+{
+	unsigned int nbRemainingShips = SHIP_MAX_NB;
+
+	for (int i = 0; i < SHIP_MAX_NB; i++)
+	{
+		if (_ships[i].getSunkStatus())
+		{
+			nbRemainingShips--;
+		}
+	}
+
+	return nbRemainingShips;
 }
 
 bool Grid::initShips()
