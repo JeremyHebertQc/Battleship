@@ -26,8 +26,12 @@ public:
 	void read(std::istream &monFlux);
 	
 	const Point& operator=(const Point &autrePoint);
-	const bool operator==(const Point &autrePoint);
-	const bool operator!=(const Point &autrePoint);
+	bool operator==(const Point &autrePoint) const;
+	bool operator!=(const Point &autrePoint) const;
+	bool operator>(const Point & autrePoint) const;
+	bool operator<(const Point& autrePoint) const;
+	bool operator>=(const Point &autrePoint) const;
+	bool operator<=(const Point &autrePoint) const;
 	friend std::ostream& operator<<(std::ostream& os, const Point &Point);
 	friend std::istream& operator>>(std::istream& os, Point &Point);
 	Point operator+( Point &autrePoint);

@@ -18,12 +18,16 @@ void Ship::updatePoints() {
 	}
 }
 
+void Ship::updateSunkStatus()
+{
+}
+
 Ship::Ship(const std::string& name, int length)
 {
 	_name = "name";
 	_x = _y = _hasSunk = false;
 	_direction = HORIZONTAL;
-	//setLength(length);
+	setLength(length);
 }
 
 Ship::~Ship()
@@ -47,4 +51,35 @@ const Direction& Ship::getDirection() const
 bool Ship::getSunkStatus() const
 {
 	return _hasSunk;
+}
+
+//std::ostream& operator<<(std::ostream& output, const Ship& ship)
+//{
+//	// TODO: insérer une instruction return ici
+//}
+//
+//std::istream& operator>>(std::istream& input, Ship& ship)
+//{
+//	// TODO: insérer une instruction return ici
+//}
+
+void Ship::setLength(int length)
+{
+}
+
+void Ship::setDirection(const Direction& direction)
+{
+}
+
+void Ship::rotate()
+{
+}
+
+void Ship::hide()
+{
+}
+
+bool Ship::checkCollision(const Ship& otherShip) const
+{
+	return false;
 }

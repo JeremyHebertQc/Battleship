@@ -9,57 +9,68 @@
 
 using namespace std;
 
-Point::Point() {
+Point::Point()
+{
 	_x = 0;
 	_y = 0;
 	_color = 7;
 }
 
-Point::Point(int x, int y) {
+Point::Point(int x, int y)
+{
 	_x = x;
 	_y = y;
 	_color = 7;
 }
 
-Point::Point(const Point &p) {
+Point::Point(const Point &p)
+{
 	_x = p._x;
 	_y = p._y;
 	_color = p._color;
 }
 
-Point::~Point(){
+Point::~Point()
+{
 	_x = _y = _color = 0;
 }
 
-int Point::getX() const{
+int Point::getX() const
+{
 	return _x;
 }
 
-int Point::getY() const{
+int Point::getY() const
+{
 	return _y;
 }
 
-int Point::getColor() const{
+int Point::getColor() const
+{
 	return _color;
 }
 
-Point Point::getPoint() const{
+Point Point::getPoint() const
+{
 	return *this;
 }
 
-void Point::setX(const int x){
+void Point::setX(const int x)
+{
 	assert(_x >= 0);
 	
 	_x = x;
 }
 
-void Point::setY(const int y){
+void Point::setY(const int y)
+{
 	assert(_y >= 0);
 
 	_y = y;
 }
 
-void Point::setPosition(const int x, const int y){
+void Point::setPosition(const int x, const int y)
+{
 	assert(_x >= 0);
 	assert(_y >= 0);
 
@@ -67,14 +78,16 @@ void Point::setPosition(const int x, const int y){
 	_y = y;
 }
 
-void Point::setColor(const int color){
+void Point::setColor(const int color)
+{
 	assert(_color >= 0);
 	assert(_color <= 25);
 
 	_color = color;
 }
 
-void Point::setPoint(const int x, const int y, const int color){
+void Point::setPoint(const int x, const int y, const int color)
+{
 	assert(_color >= 0);
 	assert(_color <= 25);
 	assert(_x >= 0);
@@ -85,7 +98,8 @@ void Point::setPoint(const int x, const int y, const int color){
 	_color = color;
 }
 
-void Point::draw(ostream& os) const{
+void Point::draw(ostream& os) const
+{
 	goToXY(_x, _y);
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _color);
@@ -95,17 +109,20 @@ void Point::draw(ostream& os) const{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 
-void Point::print(ostream &os) const{
+void Point::print(ostream &os) const
+{
 	os << "(" << _x << "," << _y << ") " << _color;
 }
 
-void Point::read(std::istream &monFlux){
+void Point::read(std::istream &monFlux)
+{
 	char trash;
 	
 	monFlux >> trash >> _x >> trash >> _y >> trash >> _color;
 }
 
-const Point& Point::operator=(const Point& autrePoint){
+const Point& Point::operator=(const Point& autrePoint)
+{
 	_x = autrePoint._x;
 	_y = autrePoint._y;
 	_color = autrePoint._color;
@@ -113,29 +130,55 @@ const Point& Point::operator=(const Point& autrePoint){
 	return *this;
 }
 
-const bool Point::operator==(const Point& autrePoint){
-	if (_x != autrePoint.getX() || _y != autrePoint.getY() || _color != autrePoint.getColor())
-		return 0;
-	return 1;
+bool Point::operator==(const Point& autrePoint) const
+{
+	return _x == autrePoint._x
+		&& _y == autrePoint._y;
 }
 
-const bool Point::operator!=(const Point& autrePoint){
+bool Point::operator!=(const Point& autrePoint) const
+{
 	return !(operator==(autrePoint));
 }
 
-ostream& operator<<(ostream& os, const Point& Point){
+bool Point::operator>(const Point& autrePoint) const
+{
+	return _x > autrePoint._x
+		&& _y > autrePoint._y;
+}
+
+bool Point::operator<(const Point& autrePoint) const
+{
+	return _x < autrePoint._x
+		&& _y < autrePoint._y;
+}
+
+bool Point::operator>=(const Point& autrePoint) const
+{
+	return operator>(autrePoint) || operator==(autrePoint);
+}
+
+bool Point::operator<=(const Point& autrePoint) const
+{
+	return operator<(autrePoint) || operator==(autrePoint);
+}
+
+ostream& operator<<(ostream& os, const Point& Point)
+{
 	Point.print(os);
 
 	return os;
 }
 
-istream& operator>>(istream& is, Point& Point){
+istream& operator>>(istream& is, Point& Point)
+{
 	Point.read(is);
 
 	return is;
 }
 
-Point Point::operator+(Point& autrePoint){
+Point Point::operator+(Point& autrePoint)
+{
 	return Point(_x + autrePoint._x, _y + autrePoint._y);
 }
 
@@ -143,7 +186,8 @@ Point Point::operator-(Point& autrePoint){
 	return Point(_x - autrePoint._x, _y - autrePoint._y);
 }
 
-void goToXY(int xpos, int ypos) {
+void goToXY(int xpos, int ypos)
+{
 	COORD scrn = { 0 };
 
 	HANDLE hOuput = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -154,9 +198,11 @@ void goToXY(int xpos, int ypos) {
 	SetConsoleCursorPosition(hOuput, scrn);
 }
 
-void ouvrirFichier(ifstream& monFlux, const string &nomFichier) {
+void ouvrirFichier(ifstream& monFlux, const string &nomFichier)
+{
 	monFlux.open(nomFichier);
-	if (!monFlux.is_open() || monFlux.peek() == EOF) {
+	if (!monFlux.is_open() || monFlux.peek() == EOF)
+	{
 		cout << "Erreur de lecture du fichier" << endl;
 		system("pause>NUL");
 		exit(1);
@@ -164,10 +210,12 @@ void ouvrirFichier(ifstream& monFlux, const string &nomFichier) {
 }
 
 
-int lireFichier(ifstream& monFlux, Point tabPoints[]) {
+int lireFichier(ifstream& monFlux, Point tabPoints[])
+{
 	int cpt = 0;
 	
-	while (!monFlux.eof()) {
+	while (!monFlux.eof())
+	{
 		tabPoints[cpt].read(monFlux);
 
 		if(tabPoints[cpt].getColor() != 7 || tabPoints[cpt].getX() != 0 || tabPoints[cpt].getY() != 0)
@@ -177,18 +225,22 @@ int lireFichier(ifstream& monFlux, Point tabPoints[]) {
 	return cpt;
 }
 
-void afficherForme(const Point tabPoints[], int longueur, std::ostream &monFlux){
-	for (int i = 0; i < longueur; i++){
+void afficherForme(const Point tabPoints[], int longueur, std::ostream &monFlux)
+{
+	for (int i = 0; i < longueur; i++)
+	{
 		tabPoints[i].draw(monFlux);
 	}
 
 }
 
-void fermerFichier(std::ifstream &monFlux){
+void fermerFichier(std::ifstream &monFlux)
+{
 	monFlux.close();
 }
 
-void afficherMenu() {
+void afficherMenu()
+{
 	system("cls");
 
 	cout << "Menu de l'application" << endl
@@ -198,13 +250,15 @@ void afficherMenu() {
 		<< "2 - Faire mon dessin" << endl << endl;
 }
 
-int paint(Point tabPoints[]) {
+int paint(Point tabPoints[])
+{
 	int longueur = 0;
 	int x = 0;
 	int y = 0;
 	system("cls");
 
-	do {
+	do
+	{
 		char key = _getch();
 		
 		if (key == 32)
@@ -216,7 +270,8 @@ int paint(Point tabPoints[]) {
 				tabPoints[longueur].setColor(0);
 			else
 				tabPoints[longueur].setColor(tabPoints[longueur].getColor() + 1);
-		else {
+		else
+		{
 			moveCursor(x, y, key);
 			tabPoints[longueur].setX(x);
 			tabPoints[longueur].setY(y);
@@ -229,8 +284,10 @@ int paint(Point tabPoints[]) {
 	return longueur;
 }
 
-void moveCursor(int &xpos, int &ypos, char direction) {
-	switch (direction) {
+void moveCursor(int &xpos, int &ypos, char direction)
+{
+	switch (direction)
+	{
 	case-32:
 		break;
 	case 'w':
@@ -259,11 +316,14 @@ void moveCursor(int &xpos, int &ypos, char direction) {
 	}
 }
 
-void sauvegarderFichier(const string &nomFichier, const Point tabPoints[], int longueur) {
+void sauvegarderFichier(const string &nomFichier, const Point tabPoints[], int longueur)
+{
 	ofstream fichierSortie(nomFichier);
 
-	if (fichierSortie.is_open()) {
-		for (int i = 0; i < longueur; i++) {
+	if (fichierSortie.is_open())
+	{
+		for (int i = 0; i < longueur; i++)
+		{
 			tabPoints[i].print(fichierSortie);
 		}
 
@@ -271,7 +331,8 @@ void sauvegarderFichier(const string &nomFichier, const Point tabPoints[], int l
 
 		cout << "Données sauvegardées dans " << nomFichier << endl;
 	}
-	else {
+	else
+	{
 		cout << "Impossible d'ouvrir le fichier " << nomFichier << " pour sauvegarde." << endl;
 	}
 }

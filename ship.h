@@ -13,6 +13,13 @@ enum Direction {
 	VERTICAL
 };
 
+enum HitingShip {
+	HIT_WATER,
+	HIT_SUNK,
+	HIT_TWICE,
+	HIT_STANDARD
+};
+
 class Ship {
 private:
 	std::string _name;
@@ -34,18 +41,18 @@ public:
 	const Direction& getDirection() const;
 	bool getSunkStatus() const;
 
-	//		void setPosition(int x, int y);
-	//		void setLength(int length);
-	//		void setDirection(const Direction& direction);
-	//
-	//		void rotate();
-	//		void hide();
-	//		bool checkCollision(const Ship& otherShip) const;
-	//		int placeHit(const Point& hitPosition);
-	//		void print(std::ostream& output) const;
-	//		void draw(std::ostream& output) const;
-	//		void read(std::istream& input);
+			void setPosition(int x, int y);
+			void setLength(int length);
+			void setDirection(const Direction& direction);
+	
+			void rotate();
+			void hide();
+			bool checkCollision(const Ship& otherShip) const;
+			int placeHit(const Point& hitPosition);
+			void print(std::ostream& output) const;
+			void draw(std::ostream& output) const;
+			void read(std::istream& input);
 };
-//
+
 //std::ostream& operator<<(std::ostream& output, const Ship& ship);
 //std::istream& operator>>(std::istream& input, Ship& ship);
