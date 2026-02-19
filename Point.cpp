@@ -113,13 +113,12 @@ const Point& Point::operator=(const Point& autrePoint){
 	return *this;
 }
 
-const bool Point::operator==(const Point& autrePoint){
-	if (_x != autrePoint.getX() || _y != autrePoint.getY() || _color != autrePoint.getColor())
-		return 0;
-	return 1;
+bool Point::operator==(const Point& autrePoint)const {
+	return _x == autrePoint._x
+		&& _y == autrePoint._y;
 }
 
-const bool Point::operator!=(const Point& autrePoint){
+bool Point::operator!=(const Point& autrePoint)const {
 	return !(operator==(autrePoint));
 }
 

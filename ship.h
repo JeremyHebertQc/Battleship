@@ -41,7 +41,7 @@ class Ship {
 		void rotate();
 		void hide();
 		bool checkCollision(const Ship& otherShip) const;
-//		int placeHit(const Point& hitPosition);
+		int placeHit(const Point& hitPosition);
 //		void print(std::ostream& output) const;
 //		void draw(std::ostream& output) const;
 //		void read(std::istream& input);

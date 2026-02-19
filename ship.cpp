@@ -119,3 +119,29 @@ bool Ship::checkCollision(const Ship& otherShip) const
 
 	return false;
 }
+
+int Ship::placeHit(const Point& hitPosition)
+{
+	
+
+	for (int i = 0; i < _length; i++)
+	{
+		if (hitPosition == _points[i])
+		{
+			if (_hasSunk)
+				return 1;
+			else if (_points[i].getColor() == SHIP_HIT_COLOR)
+				return 2;
+			else
+			{
+				_points[i].setColor(SHIP_HIT_COLOR);
+
+				updateSunkStatus();
+
+				return 3;
+			}
+		}
+		else
+			return 0;
+	}
+}
