@@ -23,7 +23,7 @@ Ship::Ship(const std::string& name, int length)
 	_name = "name";
 	_x = _y = _hasSunk = false;
 	_direction = HORIZONTAL;
-	//setLength(length);
+	setLength(length);
 }
 
 Ship::~Ship()
@@ -51,8 +51,12 @@ bool Ship::getSunkStatus() const
 
 void Ship::setPosition(int x, int y)
 {
-	//assert(_x >= 0);
-	//assert(_y >= 0);
+	if (x < 0 || y < 0) {
+		std::cout << std::endl << "posistion de bateau invalide" << std::endl;
+
+		std::system("pause>NUL");
+		std::exit(1);
+	}
 
 	_x = x;
 	_y = y;
@@ -60,9 +64,31 @@ void Ship::setPosition(int x, int y)
 	updatePoints();
 }
 
+void Ship::setLength(int length)
+{
+	if (length < 0 || length > SHIP_MAX_LENGTH) {
+		std::cout << std::endl << "Longueur de bateau invalide" << std::endl;
+
+		std::system("pause>NUL");
+		std::exit(1);
+	}
+
+	_length = length;
+}
+
 void Ship::setDirection(const Direction& direction)
 {
 	_direction = direction;
+
+	updatePoints();
+}
+
+void Ship::rotate()
+{
+	if (_direction)
+		_direction = (Direction)0;
+	else
+		_direction = (Direction)1;
 
 	updatePoints();
 }

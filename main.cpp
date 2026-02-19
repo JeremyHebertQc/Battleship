@@ -16,7 +16,9 @@ int main() {
 	//Game game;
 	//game.play(std::cout);
 
-	Ship test;
+	Ship test("bla", 5);
+
+	test.rotate();
 
 	return 0;
 }
