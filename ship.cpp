@@ -23,9 +23,9 @@ void Ship::updatePoints() {
 
 void Ship::updateSunkStatus()
 {
-	for (const Point& point : _points)
+	for (int i = 0; i < _length; i++)
 	{
-		if (point.getColor() == SHIP_HIT_COLOR)
+		if (_points[i].getColor() == SHIP_HIT_COLOR)
 			continue;
 		return;
 	}
@@ -35,7 +35,7 @@ void Ship::updateSunkStatus()
 
 Ship::Ship(const std::string& name, int length)
 {
-	_name = "name";
+	_name = name;
 	_x = _y = _hasSunk = false;
 	_direction = HORIZONTAL;
 	setLength(length);
@@ -139,8 +139,6 @@ bool Ship::checkCollision(const Ship& otherShip) const
 
 int Ship::placeHit(const Point& hitPosition)
 {
-	
-
 	for (Point& point : _points)
 	{
 		if (hitPosition == point)
@@ -157,8 +155,8 @@ int Ship::placeHit(const Point& hitPosition)
 
 				return HIT_STANDARD;
 			}
-		}
-		else
-			return HIT_WATER;
+		}	
 	}
+
+	return HIT_WATER;
 }

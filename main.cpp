@@ -18,9 +18,7 @@ int main() {
 
 	Ship test("bla", 5);
 
-	std::cout << test.placeHit(Point (0,0));
-	
-	system("pause>NUL");
+	test.setDirection(HORIZONTAL);
 
 	return 0;
 }
