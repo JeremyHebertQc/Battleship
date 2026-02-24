@@ -14,8 +14,9 @@ DATE : 17 février 2026
 #include "ship.h"
 
 int main() {
-	//Game game;
-	//game.play(std::cout);
-
+	Grid grid;
+	int nbShipsRemaining = grid.getNbRemainingShips();
+	std::cout << nbShipsRemaining << std::endl;
+	system("pause");
 	return 0;
 }

@@ -1,7 +1,5 @@
 #include "grid.h"
 
-using namespace std;
-
 /***********************************************/
 /* NE MODIFIEZ PAS LES MÉTHODES QUI SUIVENT !  */
 /* ELLES SONT DÉJÀ PLEINEMENT FONCTIONNELLES ! */
@@ -54,7 +52,7 @@ bool Grid::placeShips()
 	return true;
 }
 
-void Grid::printShipsStatus(ostream& output) const
+void Grid::printShipsStatus(std::ostream& output) const
 {
 	goToXY(GRID_SHIPS_STATUS_X, GRID_SHIPS_STATUS_Y);
 	output << "BATEAUX RESTANTS";
@@ -141,7 +139,10 @@ bool Grid::placeHit(const Point& hitPosition)
 	default:
 		exit(1);
 	}
-	return true; // TODO: Instruction précédente celle-ci
+
+	_missedHits[_nbMissedHits++] = hitPosition;
+	_missedHits[_nbMissedHits].setColor(GRID_MISSED_HITS_COLOR);
+	return true;
 }
 
 bool Grid::initShips()
