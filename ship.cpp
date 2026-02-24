@@ -160,3 +160,40 @@ int Ship::placeHit(const Point& hitPosition)
 
 	return HIT_WATER;
 }
+
+void Ship::print(std::ostream& output) const
+{
+	output << _name << " (" << _length << ")";
+}
+
+void Ship::draw(std::ostream& output) const
+{
+	for (const Point& point : _points)
+		point.draw(output);
+	
+}
+
+void Ship::read(std::istream& input)
+{
+	//char trash;
+	//int temp;
+	std::string temp;
+
+	input >> _name;
+
+	input >> temp;
+	setLength(temp[1]);
+
+	//input >> trash >> temp >> trash;
+	//setLength(temp);
+}
+
+std::ostream& operator<<(std::ostream& output, const Ship& ship)
+{
+	ship.draw(output);
+}
+
+std::istream& operator>>(std::istream& input, Ship& ship)
+{
+	ship.read(input);
+}

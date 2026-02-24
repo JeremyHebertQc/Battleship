@@ -49,10 +49,10 @@ class Ship {
 		void hide();
 		bool checkCollision(const Ship& otherShip) const;
 		int placeHit(const Point& hitPosition);
-//		void print(std::ostream& output) const;
-//		void draw(std::ostream& output) const;
-//		void read(std::istream& input);
+		void print(std::ostream& output) const;
+		void draw(std::ostream& output) const;
+		void read(std::istream& input);
 };
-//
-//std::ostream& operator<<(std::ostream& output, const Ship& ship);
-//std::istream& operator>>(std::istream& input, Ship& ship);
+
+std::ostream& operator<<(std::ostream& output, const Ship& ship);
+std::istream& operator>>(std::istream& input, Ship& ship);
