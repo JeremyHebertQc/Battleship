@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "mesConstantes.h"
-#include "point.h" // Ajoutez vos fichiers "point.h" et "point.cpp" développés dans un laboratoire précédent
+#include "Point.h"
 
 /********************************/
 /* NE MODIFIEZ PAS CE FICHIER ! */
@@ -11,6 +11,13 @@
 enum Direction {
 	HORIZONTAL,
 	VERTICAL
+};
+
+enum HittingShip {
+	HIT_WATER,
+	HIT_SUNK,
+	HIT_TWICE,
+	HIT_STANDARD
 };
 
 class Ship {
