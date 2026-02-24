@@ -48,37 +48,37 @@ Point Point::getPoint() const{
 }
 
 void Point::setX(const int x){
-	assert(_x >= 0);
+	assert(x >= 0);
 	
 	_x = x;
 }
 
 void Point::setY(const int y){
-	assert(_y >= 0);
+	assert(y >= 0);
 
 	_y = y;
 }
 
 void Point::setPosition(const int x, const int y){
-	assert(_x >= 0);
-	assert(_y >= 0);
+	assert(x >= 0);
+	assert(y >= 0);
 
 	_x = x;
 	_y = y;
 }
 
 void Point::setColor(const int color){
-	assert(_color >= 0);
-	assert(_color <= 25);
+	assert(color >= 0);
+	assert(color <= 25);
 
 	_color = color;
 }
 
 void Point::setPoint(const int x, const int y, const int color){
-	assert(_color >= 0);
-	assert(_color <= 25);
-	assert(_x >= 0);
-	assert(_y >= 0);
+	assert(color >= 0);
+	assert(color <= 25);
+	assert(x >= 0);
+	assert(y >= 0);
 
 	_x = x;
 	_y = y;

@@ -141,17 +141,17 @@ int Ship::placeHit(const Point& hitPosition)
 {
 	
 
-	for (const Point& point : _points)
+	for (Point& point : _points)
 	{
 		if (hitPosition == point)
 		{
 			if (_hasSunk)
 				return HIT_SUNK;
-			else if (_points[i].getColor() == SHIP_HIT_COLOR)
+			else if (point.getColor() == SHIP_HIT_COLOR)
 				return HIT_TWICE;
 			else
 			{
-				_points[i].setColor(SHIP_HIT_COLOR);
+				point.setColor(SHIP_HIT_COLOR);
 
 				updateSunkStatus();
 

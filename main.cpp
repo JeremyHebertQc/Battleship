@@ -18,9 +18,9 @@ int main() {
 
 	Ship test("bla", 5);
 
-	test.hide();
-
-
+	std::cout << test.placeHit(Point (0,0));
+	
+	system("pause>NUL");
 
 	return 0;
 }
