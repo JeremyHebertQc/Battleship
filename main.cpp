@@ -16,9 +16,5 @@ int main() {
 	//Game game;
 	//game.play(std::cout);
 
-	Ship test("bla", 5);
-
-	test.setDirection(HORIZONTAL);
-
 	return 0;
 }

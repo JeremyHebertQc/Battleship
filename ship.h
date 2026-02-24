@@ -13,7 +13,7 @@ enum Direction {
 	VERTICAL
 };
 
-enum AttackingShip {
+enum HittingShip {
 	HIT_WATER,
 	HIT_SUNK,
 	HIT_TWICE,

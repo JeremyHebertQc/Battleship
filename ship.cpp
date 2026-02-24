@@ -168,32 +168,35 @@ void Ship::print(std::ostream& output) const
 
 void Ship::draw(std::ostream& output) const
 {
-	for (const Point& point : _points)
-		point.draw(output);
+	for (int i = 0; i < _length; i++)
+		_points[i].draw(output);
 	
 }
 
 void Ship::read(std::istream& input)
 {
+	std::string length;
+
+	input >> _name >> length;
+	setLength(length[1]);
+
 	//char trash;
-	//int temp;
-	std::string temp;
-
-	input >> _name;
-
-	input >> temp;
-	setLength(temp[1]);
-
-	//input >> trash >> temp >> trash;
-	//setLength(temp);
+	//int length;
+	// 
+	//input >> _name >> trash >> length >> trash;
+	//setLength(length);
 }
 
 std::ostream& operator<<(std::ostream& output, const Ship& ship)
 {
 	ship.draw(output);
+
+	return output;
 }
 
 std::istream& operator>>(std::istream& input, Ship& ship)
 {
 	ship.read(input);
+
+	return input;
 }
