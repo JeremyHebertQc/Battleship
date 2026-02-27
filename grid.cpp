@@ -125,17 +125,13 @@ bool Grid::placeHit(const Point& hitPosition)
 	switch (placeHit(hitPosition))
 	{
 	case HIT_WATER:
-		break;
-		
-	case HIT_SUNK:
-		return false;
-
-	case HIT_TWICE:
-		return false;
-
 	case HIT_STANDARD:
 		break;
 		
+	case HIT_SUNK:
+	case HIT_TWICE:
+		return false;
+
 	default:
 		exit(1);
 	}
