@@ -1,3 +1,4 @@
+#include <assert.h>
 #include "grid.h"
 
 /***********************************************/
@@ -36,15 +37,15 @@ bool Grid::placeShips()
 
 			const int randX = (rand() % (maxX - GRID_INNER_MIN_X + 1) + GRID_INNER_MIN_X);
 			const int randY = (rand() % (maxY - GRID_INNER_MIN_Y + 1) + GRID_INNER_MIN_Y);
-			//_ships[i].setPosition(randX, randY);
+			_ships[i].setPosition(randX, randY);
 
 			for (int j = 0; j < i; j++)
 			{
-				//if ((i != j) && _ships[i].checkCollision(_ships[j]))
-				//{
+				if ((i != j) && _ships[i].checkCollision(_ships[j]))
+				{
 					collides = true;
 					break;
-				//}
+				}
 			}
 		} while (collides);
 	}
@@ -96,9 +97,9 @@ Grid::~Grid()
 
 int Grid::getNbRemainingShips() const
 {
-	unsigned int nbRemainingShips = SHIP_MAX_NB;
+	unsigned int nbRemainingShips = _nbShips;
 
-	for (int i = 0; i < SHIP_MAX_NB; i++)
+	for (int i = 0; i < _nbShips; i++)
 	{
 		if (_ships[i].getSunkStatus())
 		{
@@ -111,37 +112,54 @@ int Grid::getNbRemainingShips() const
 
 bool Grid::placeHit(const Point& hitPosition)
 {
-	if (hitPosition.getX() > GRID_INNER_MAX_X || hitPosition.getX() < GRID_INNER_MAX_X || hitPosition.getY() > GRID_INNER_MIN_Y || hitPosition.getY() < GRID_INNER_MIN_Y)
+	// Vérification si dedans tableau
+	if ((hitPosition.getX() < GRID_INNER_MIN_X || hitPosition.getX() > GRID_INNER_MAX_X) || (hitPosition.getY() < GRID_INNER_MIN_Y))
 	{
 		return false;
 	}
 
+	// Vérification si déjà tiré dans l'eau a cette endroit la
 	for (int i = 0; i < _nbMissedHits; i++)
 	{
 		if (hitPosition == _missedHits[i])
 			return false;
 	}
-	
-	switch (placeHit(hitPosition))
-	{
-	case HIT_WATER:
-	case HIT_STANDARD:
-		break;
-		
-	case HIT_SUNK:
-	case HIT_TWICE:
-		return false;
 
-	default:
-		exit(1);
+	// Vérification l'emplacement du tire si...
+	for (int i = 0; i < _nbShips; i++)
+	{
+		switch (_ships[i].placeHit(hitPosition)) // Le bateau qui regarde "Suis-je toucher ?"
+		{
+		case MISSED_SHIP:  // ... touche pas le bateau *MISSED_SHIP*
+			continue;
+
+		case SHIP_HIT: // ... touche un bateau a un endroit qu'il était pas toucher *ship hit*
+			return true;
+
+		case SHIP_SUNK: // ... touche un bateau couler *ship sunk*
+		case SHIP_HIT_TWICE: // ... touche une deuxième fois *ship hit twice*
+			return false;
+
+		default: // ERROR!!! GIVE UP!!!
+			assert(true);
+		}
 	}
 
-	_missedHits[_nbMissedHits++] = hitPosition;
+	// Si tire à touché aucun bateau
+	_missedHits[_nbMissedHits] = hitPosition;
 	_missedHits[_nbMissedHits].setColor(GRID_MISSED_HITS_COLOR);
+	_nbMissedHits++;
 	return true;
 }
 
 bool Grid::initShips()
 {
+	_nbShips++;
+	_ships[0] = Ship("existe", 1);
+	_ships[0].setPosition(9, 9);
+	_ships[1] = Ship("stan", 1);
+	_ships[1].setPosition(7, 7);
+
+	_nbShips++;
 	return false;
 }
