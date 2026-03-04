@@ -144,21 +144,21 @@ int Ship::placeHit(const Point& hitPosition)
 		if (hitPosition == point)
 		{
 			if (_hasSunk)
-				return HIT_SUNK;
+				return SHIP_SUNK;
 			else if (point.getColor() == SHIP_HIT_COLOR)
-				return HIT_TWICE;
+				return SHIP_HIT_TWICE;
 			else
 			{
 				point.setColor(SHIP_HIT_COLOR);
 
 				updateSunkStatus();
 
-				return HIT_STANDARD;
+				return SHIP_HIT;
 			}
 		}	
 	}
 
-	return HIT_WATER;
+	return MISSED_SHIP;
 }
 
 void Ship::print(std::ostream& output) const
@@ -175,16 +175,16 @@ void Ship::draw(std::ostream& output) const
 
 void Ship::read(std::istream& input)
 {
-	std::string length;
+	//std::string length;
 
-	input >> _name >> length;
-	setLength(length[1]);
+	//input >> _name >> length;
+	//setLength(length[1] - '0');
 
-	//char trash;
-	//int length;
-	// 
-	//input >> _name >> trash >> length >> trash;
-	//setLength(length);
+	char trash;
+	int length;
+	 
+	input >> _name >> trash >> length >> trash;
+	setLength(length);
 }
 
 std::ostream& operator<<(std::ostream& output, const Ship& ship)

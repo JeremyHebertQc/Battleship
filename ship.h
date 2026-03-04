@@ -13,45 +13,45 @@ enum Direction {
 	VERTICAL
 };
 
-enum HittingShip {
-	HIT_WATER,
-	HIT_SUNK,
-	HIT_TWICE,
-	HIT_STANDARD
+enum ShipStatus {
+	MISSED_SHIP,
+	SHIP_SUNK,
+	SHIP_HIT_TWICE,
+	SHIP_HIT
 };
 
 class Ship {
-	private:
-		std::string _name;
-		int _x;
-		int _y;
-		int _length;
-		Direction _direction;
-		Point _points[SHIP_MAX_LENGTH];
-		bool _hasSunk;
+private:
+	std::string _name;
+	int _x;
+	int _y;
+	int _length;
+	Direction _direction;
+	Point _points[SHIP_MAX_LENGTH];
+	bool _hasSunk;
 
-		void updatePoints();
-		void updateSunkStatus();
+	void updatePoints();
+	void updateSunkStatus();
 
-	public:
-		Ship(const std::string& name = "", int length = 0);
-		~Ship();
+public:
+	Ship(const std::string& name = "", int length = 0);
+	~Ship();
 
-		int getLength() const;
-		const Direction& getDirection() const;
-		bool getSunkStatus() const;
+	int getLength() const;
+	const Direction& getDirection() const;
+	bool getSunkStatus() const;
 
-		void setPosition(int x, int y);
-		void setLength(int length);
-		void setDirection(const Direction& direction);
+	void setPosition(int x, int y);
+	void setLength(int length);
+	void setDirection(const Direction& direction);
 
-		void rotate();
-		void hide();
-		bool checkCollision(const Ship& otherShip) const;
-		int placeHit(const Point& hitPosition);
-		void print(std::ostream& output) const;
-		void draw(std::ostream& output) const;
-		void read(std::istream& input);
+	void rotate();
+	void hide();
+	bool checkCollision(const Ship& otherShip) const;
+	int placeHit(const Point& hitPosition);
+	void print(std::ostream& output) const;
+	void draw(std::ostream& output) const;
+	void read(std::istream& input);
 };
 
 std::ostream& operator<<(std::ostream& output, const Ship& ship);
