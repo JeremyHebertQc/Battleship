@@ -19,7 +19,7 @@ class Grid {
 
 		bool initShips();
 		bool placeShips();
-//		void hideShips();
+		void hideShips();
 
 	public:
 		// Constructeur

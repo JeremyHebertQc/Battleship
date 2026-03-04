@@ -54,6 +54,11 @@ bool Grid::placeShips()
 	return true;
 }
 
+void Grid::hideShips()
+{
+	//TODO
+}
+
 // Méthode d'affichage de la grille
 void Grid::printShipsStatus(std::ostream& output) const
 {
@@ -182,9 +187,7 @@ void Grid::draw(std::ostream& output) const
 // Méthode de saisie de la grille
 void Grid::read(std::istream& input)
 {
-	std::fstream monFlux;
-
-	while (!monFlux.eof())
+	while (!input.eof())
 	{
 		for (int i = 0; i < SHIP_MAX_NB; i++)
 		{
@@ -193,24 +196,30 @@ void Grid::read(std::istream& input)
 			_nbShips++;
 		}
 	}
-
-
-	//for (int i = 0; i < SHIP_MAX_NB; i++)
-	//{
-	//	_ships[i].read(input);
-	//	_nbShips++;
-	//}
 }
 
 // Méthode d'importation des navires
 bool Grid::initShips()
 {
-	_nbShips++;
-	_ships[0] = Ship("existe", 1);
-	_ships[0].setPosition(9, 9);
-	_ships[1] = Ship("stan", 1);
-	_ships[1].setPosition(7, 7);
-	return false;
+	std::ifstream monFlux;
+
+	// Lecture du fichier
+	ouvrirFichier(monFlux, GRID_SHIPS_FILENAME);
+	read(monFlux);
+	fermerFichier(monFlux);
+
+	// Placement des navires
+	if (placeShips())
+	{
+		hideShips();
+	}
+	else
+	{
+		system("cls");
+		std::cout << "Erreur! Impossible de placer les navires dans la grille. Le programme de terminera à l'appui de n'importe quelle touche.";
+		system("pause>NUL");
+		exit(2);
+	}
 }
 
 
