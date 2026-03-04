@@ -39,8 +39,8 @@ int main() {
 
 	system("pause>NUL");
 	system("cls");
-	grid.draw(std::cout);
-
+	//grid.draw(std::cout);
+	std::cout << grid;
 	system("pause>NUL");
 	return 0;
 }

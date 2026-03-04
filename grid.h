@@ -43,5 +43,5 @@ class Grid {
 };
 
 // Surchage des opérateur
-//std::ostream& operator<<(std::ostream& output, const Grid& grid); // Méthode d'affichage de la grille
+std::ostream& operator<<(std::ostream& output, const Grid& grid); // Méthode d'affichage de la grille
 //std::istream& operator>>(std::istream& input, Grid& grid); // Méthode de saisie de la grille

@@ -190,3 +190,12 @@ bool Grid::initShips()
 	_nbShips++;
 	return false;
 }
+
+
+// Surcharge des opérateurs
+std::ostream& operator<<(std::ostream& output, const Grid& grid)
+{
+	grid.draw(output);
+
+	return output;
+}
