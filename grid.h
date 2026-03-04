@@ -22,14 +22,26 @@ class Grid {
 //		void hideShips();
 
 	public:
+		// Constructeur
 		Grid();
+
+		// Destructeur
 		~Grid();
+
+		// Getters
 		int getNbRemainingShips() const;
+
+		// Méthode de vérification des tires
 		bool placeHit(const Point& hitPosition);
+
+		// Méthode d'affichage de la grille
 		void printShipsStatus(std::ostream& output) const;
 //		void draw(std::ostream& output) const;
+		
+//		// Méthode de saisie de la grille
 //		void read(std::istream& input);
 };
 
-//std::ostream& operator<<(std::ostream& output, const Grid& grid);
-//std::istream& operator>>(std::istream& input, Grid& grid);
+// Surchage des opérateur
+//std::ostream& operator<<(std::ostream& output, const Grid& grid); // Méthode d'affichage de la grille
+//std::istream& operator>>(std::istream& input, Grid& grid); // Méthode de saisie de la grille

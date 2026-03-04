@@ -53,6 +53,7 @@ bool Grid::placeShips()
 	return true;
 }
 
+// Méthode d'affichage de la grille
 void Grid::printShipsStatus(std::ostream& output) const
 {
 	goToXY(GRID_SHIPS_STATUS_X, GRID_SHIPS_STATUS_Y);
@@ -72,7 +73,7 @@ void Grid::printShipsStatus(std::ostream& output) const
 			goToXY((GRID_SHIPS_STATUS_X), (GRID_SHIPS_STATUS_Y + i));
 		}
 
-		//_ships[i - 1].print(output);
+		_ships[i - 1].print(output);
 	}
 }
 
@@ -80,6 +81,7 @@ void Grid::printShipsStatus(std::ostream& output) const
 /* CODEZ ICI LES AUTRES MÉTHODES DE LA CLASSE "GRID". */
 /******************************************************/
 
+// Constructeur
 Grid::Grid()
 {
 	_gridOutline.setRectangle(GRID_INNER_MIN_X - 1, GRID_INNER_MIN_Y - 1, GRID_WIDTH, GRID_HEIGHT);
@@ -89,12 +91,14 @@ Grid::Grid()
 	initShips();
 }
 
+// Destructeur
 Grid::~Grid()
 {
 	_nbShips = 0;
 	_nbMissedHits = 0;
 }
 
+// Getter
 int Grid::getNbRemainingShips() const
 {
 	unsigned int nbRemainingShips = _nbShips;
@@ -110,42 +114,43 @@ int Grid::getNbRemainingShips() const
 	return nbRemainingShips;
 }
 
+// Méthode de vérification des tires
 bool Grid::placeHit(const Point& hitPosition)
 {
-	// Vérification si dedans tableau
+	// Vérification si le tire est dans la grille
 	if ((hitPosition.getX() < GRID_INNER_MIN_X || hitPosition.getX() > GRID_INNER_MAX_X) || (hitPosition.getY() < GRID_INNER_MIN_Y))
 	{
 		return false;
 	}
 
-	// Vérification si déjà tiré dans l'eau a cette endroit la
+	// Vérification si déjà tiré dans l'eau au même endroit
 	for (int i = 0; i < _nbMissedHits; i++)
 	{
 		if (hitPosition == _missedHits[i])
 			return false;
 	}
 
-	// Vérification l'emplacement du tire si...
+	// Vérification l'emplacement du tire en fonction du navire
 	for (int i = 0; i < _nbShips; i++)
 	{
-		switch (_ships[i].placeHit(hitPosition)) // Le bateau qui regarde "Suis-je toucher ?"
+		switch (_ships[i].placeHit(hitPosition)) // Le navire regarde "Suis-je toucher?"
 		{
-		case MISSED_SHIP:  // ... touche pas le bateau *MISSED_SHIP*
+		case MISSED_SHIP:  // Navire n'est pas touché
 			continue;
 
-		case SHIP_HIT: // ... touche un bateau a un endroit qu'il était pas toucher *ship hit*
+		case SHIP_HIT: // Navire touché à un nouvel endroit (tire réussi)
 			return true;
 
-		case SHIP_SUNK: // ... touche un bateau couler *ship sunk*
-		case SHIP_HIT_TWICE: // ... touche une deuxième fois *ship hit twice*
+		case SHIP_SUNK: // Navire touché, mais déjà coulé
+		case SHIP_HIT_TWICE: // Navire touché, mais déjà touché à cette emplacement
 			return false;
 
-		default: // ERROR!!! GIVE UP!!!
+		default: // Résultat inattendu, quitter le programme
 			assert(true);
 		}
 	}
 
-	// Si tire à touché aucun bateau
+	// Si tire n'a touché aucun navire, mais tire quand même valide
 	_missedHits[_nbMissedHits] = hitPosition;
 	_missedHits[_nbMissedHits].setColor(GRID_MISSED_HITS_COLOR);
 	_nbMissedHits++;
