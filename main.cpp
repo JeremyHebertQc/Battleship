@@ -10,41 +10,12 @@ DATE : 17 février 2026
 /******************************************************/
 
 //#include "game.h"
-#include <fstream>
 #include "grid.h"
 #include "ship.h"
 
 int main() {
-	std::fstream monFlux;
-	Grid grid;
+	Game game;
+	game.play(std::cout);
 
-	grid.draw(std::cout);
-
-	//grid.draw(std::cout);
-	//system("pause>NUL");
-	//system("cls");
-
-	//int nbShipsRemaining = grid.getNbRemainingShips();
-	//std::cout << nbShipsRemaining << std::endl;
-
-	//Point p1(9, 9), p2(8, 8), p3(50, 50), p4(7, 7);
-
-	//std::cout << "--------------------------------------------" << std::endl;
-
-	//for (int i = 0; i < 3; i++)
-	//{
-	//	std::cout << "Attaque grid p1 # " << i + 1 << " : " << grid.placeHit(p1) << std::endl;
-	//	std::cout << "Attaque grid p2 # " << i + 1 << " : " << grid.placeHit(p2) << std::endl;
-	//	std::cout << "Attaque grid p3 # " << i + 1 << " : " << grid.placeHit(p3) << std::endl;
-	//	if (i != 0)
-	//		std::cout << "Attaque grid p4 # " << i + 1 << " : " << grid.placeHit(p4) << std::endl;
-	//	std::cout << "--------------------------------------------" << std::endl;
-	//}
-
-	//system("pause>NUL");
-	//system("cls");
-	////grid.draw(std::cout);
-	//std::cout << grid;
-	system("pause>NUL");
 	return 0;
 }

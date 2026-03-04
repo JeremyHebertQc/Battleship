@@ -97,7 +97,7 @@ Grid::Grid()
 	_nbShips = 0;
 	_nbMissedHits = 0;
 
-	initShips();
+	assert(initShips());
 }
 
 // Destructeur
@@ -127,7 +127,7 @@ int Grid::getNbRemainingShips() const
 bool Grid::placeHit(const Point& hitPosition)
 {
 	// Vérification si le tire est dans la grille
-	if ((hitPosition.getX() < GRID_INNER_MIN_X || hitPosition.getX() > GRID_INNER_MAX_X) || (hitPosition.getY() < GRID_INNER_MIN_Y))
+	if ((hitPosition.getX() < GRID_INNER_MIN_X || hitPosition.getX() > GRID_INNER_MAX_X) || (hitPosition.getY() < GRID_INNER_MIN_Y || hitPosition.getY() > GRID_INNER_MAX_Y))
 	{
 		return false;
 	}
@@ -170,7 +170,7 @@ bool Grid::placeHit(const Point& hitPosition)
 void Grid::draw(std::ostream& output) const
 {
 	// Affichage du contour
-	_gridOutline.draw(output, 15); 
+	_gridOutline.draw(output, 7); 
 
 	// Affichage des navires
 	for (int i = 0; i < _nbShips; i++)
@@ -190,7 +190,7 @@ void Grid::draw(std::ostream& output) const
 // Méthode de saisie de la grille
 void Grid::read(std::istream& input)
 {
-	while (!input.eof())
+	while (!input.eof() && input.peek() != EOF) /*le eofbit du fstream ne devient jamais true parce qu'on essaie jamais de lire passe la fin du fichier donc aucune read operation echoue pour mettre ce bit a true donc on doit utilise le peek qui nous dit que nous somme a la fin du fichier*/
 	{
 		for (int i = 0; i < SHIP_MAX_NB; i++)
 		{
@@ -215,14 +215,9 @@ bool Grid::initShips()
 	if (placeShips())
 	{
 		hideShips();
+		return true;
 	}
-	else
-	{
-		system("cls");
-		std::cout << "Erreur! Impossible de placer les navires dans la grille. Le programme de terminera à l'appui de n'importe quelle touche.";
-		system("pause>NUL");
-		exit(2);
-	}
+	return false;
 }
 
 

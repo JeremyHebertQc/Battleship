@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "ship.h"
 
 /********************************************/
@@ -66,12 +68,7 @@ bool Ship::getSunkStatus() const
 
 void Ship::setPosition(int x, int y)
 {
-	if (x < 0 || y < 0) {
-		std::cout << std::endl << "posistion de bateau invalide" << std::endl;
-
-		std::system("pause>NUL");
-		std::exit(1);
-	}
+	assert(x >= 0 && y >= 0);
 
 	_x = x;
 	_y = y;
@@ -81,12 +78,7 @@ void Ship::setPosition(int x, int y)
 
 void Ship::setLength(int length)
 {
-	if (length < 0 || length > SHIP_MAX_LENGTH) {
-		std::cout << std::endl << "Longueur de bateau invalide" << std::endl;
-
-		std::system("pause>NUL");
-		std::exit(1);
-	}
+	assert(length >= 0 && length <= SHIP_MAX_LENGTH);
 
 	_length = length;
 }
@@ -101,35 +93,35 @@ void Ship::setDirection(const Direction& direction)
 void Ship::rotate()
 {
 	if (_direction)
-		_direction = (Direction)0;
+		_direction = HORIZONTAL;
 	else
-		_direction = (Direction)1;
+		_direction = VERTICAL;
 
 	updatePoints();
 }
 
 void Ship::hide()
 {
-	for (Point& point : _points)
+	for (int i = 0; i < getLength(); i++)
 	{
 		if (_direction == HORIZONTAL)
 		{
-			point.setColor(SHIP_HIDDEN_COLOR);
+			_points[i].setColor(SHIP_HIDDEN_COLOR);
 		}
 		else
 		{
-			point.setColor(SHIP_HIDDEN_COLOR);
+			_points[i].setColor(SHIP_HIDDEN_COLOR);
 		}
 	}
 }
 
 bool Ship::checkCollision(const Ship& otherShip) const
 {
-	for (const Point& point : _points)
+	for (int i = 0; i < getLength(); i++)
 	{
-		for (const Point& otherPoint : otherShip._points)
+		for (int j = 0; j < otherShip.getLength(); j++)
 		{
-			if (point.getX() == otherPoint.getX() && point.getY() == otherPoint.getY())
+			if (_points[i].getX() == otherShip._points[j].getX() && _points[i].getY() == otherShip._points[j].getY())
 				return true;
 		}
 	}
