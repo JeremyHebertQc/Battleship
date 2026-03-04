@@ -221,3 +221,10 @@ std::ostream& operator<<(std::ostream& output, const Grid& grid)
 
 	return output;
 }
+
+std::istream& operator>>(std::istream& input, Grid& grid)
+{
+	grid.read(input);
+
+	return input;
+}
