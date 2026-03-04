@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <fstream>
 #include "grid.h"
 
 /***********************************************/
@@ -178,6 +179,29 @@ void Grid::draw(std::ostream& output) const
 	}
 }
 
+// Méthode de saisie de la grille
+void Grid::read(std::istream& input)
+{
+	std::fstream monFlux;
+
+	while (!monFlux.eof())
+	{
+		for (int i = 0; i < SHIP_MAX_NB; i++)
+		{
+			_ships[i].read(input);
+
+			_nbShips++;
+		}
+	}
+
+
+	//for (int i = 0; i < SHIP_MAX_NB; i++)
+	//{
+	//	_ships[i].read(input);
+	//	_nbShips++;
+	//}
+}
+
 // Méthode d'importation des navires
 bool Grid::initShips()
 {
@@ -186,8 +210,6 @@ bool Grid::initShips()
 	_ships[0].setPosition(9, 9);
 	_ships[1] = Ship("stan", 1);
 	_ships[1].setPosition(7, 7);
-
-	_nbShips++;
 	return false;
 }
 

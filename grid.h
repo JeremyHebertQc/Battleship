@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "mesConstantes.h"
-#include "Rect.h" // Ajoutez vos fichiers "rect.h" et "rect.cpp" développés dans un laboratoire précédent
+#include "Rect.h"
 #include "ship.h"
 
 /********************************/
@@ -39,7 +39,7 @@ class Grid {
 		void draw(std::ostream& output) const;
 		
 		// Méthode de saisie de la grille
-//		void read(std::istream& input);
+		void read(std::istream& input);
 };
 
 // Surchage des opérateur
