@@ -54,11 +54,6 @@ bool Grid::placeShips()
 	return true;
 }
 
-void Grid::hideShips()
-{
-	//TODO
-}
-
 // Méthode d'affichage de la grille
 void Grid::printShipsStatus(std::ostream& output) const
 {
@@ -86,6 +81,14 @@ void Grid::printShipsStatus(std::ostream& output) const
 /******************************************************/
 /* CODEZ ICI LES AUTRES MÉTHODES DE LA CLASSE "GRID". */
 /******************************************************/
+// Méthode privé
+void Grid::hideShips()
+{
+	for (int i = 0; i < _nbShips; i++)
+	{
+		_ships[i].hide();
+	}
+}
 
 // Constructeur
 Grid::Grid()
