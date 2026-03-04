@@ -15,6 +15,11 @@ DATE : 17 février 2026
 
 int main() {
 	Grid grid;
+
+	grid.draw(std::cout);
+	system("pause>NUL");
+	system("cls");
+
 	int nbShipsRemaining = grid.getNbRemainingShips();
 	std::cout << nbShipsRemaining << std::endl;
 
@@ -31,6 +36,11 @@ int main() {
 			std::cout << "Attaque grid p4 # " << i + 1 << " : " << grid.placeHit(p4) << std::endl;
 		std::cout << "--------------------------------------------" << std::endl;
 	}
-	system("pause");
+
+	system("pause>NUL");
+	system("cls");
+	grid.draw(std::cout);
+
+	system("pause>NUL");
 	return 0;
 }

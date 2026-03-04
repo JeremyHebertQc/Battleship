@@ -157,6 +157,28 @@ bool Grid::placeHit(const Point& hitPosition)
 	return true;
 }
 
+// Méthode d'affichage de la grille
+void Grid::draw(std::ostream& output) const
+{
+	// Affichage du contour
+	_gridOutline.draw(output, 15); 
+
+	// Affichage des navires
+	for (int i = 0; i < _nbShips; i++)
+	{
+		_ships[i].draw(output);
+	}
+
+	printShipsStatus(output);
+
+	// Affichage des tirs manqués
+	for (int i = 0; i < _nbMissedHits; i++)
+	{
+		_missedHits[i].draw(output);
+	}
+}
+
+// Méthode d'importation des navires
 bool Grid::initShips()
 {
 	_nbShips++;

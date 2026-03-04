@@ -36,9 +36,9 @@ class Grid {
 
 		// Méthode d'affichage de la grille
 		void printShipsStatus(std::ostream& output) const;
-//		void draw(std::ostream& output) const;
+		void draw(std::ostream& output) const;
 		
-//		// Méthode de saisie de la grille
+		// Méthode de saisie de la grille
 //		void read(std::istream& input);
 };
 
