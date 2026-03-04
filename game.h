@@ -18,7 +18,7 @@ class Game {
 		Game();
 		~Game();
 
-		void play(std::ostream& sortie);
+		void play(std::ostream& output);
 		void draw(std::ostream& output) const;
 };
 

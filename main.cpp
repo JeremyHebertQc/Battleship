@@ -9,9 +9,7 @@ DATE : 17 février 2026
 /* UNE FOIS QUE VOTRE JEU DE BATTLESHIP EST COMPLÉTÉ. */
 /******************************************************/
 
-//#include "game.h"
-#include "grid.h"
-#include "ship.h"
+#include "game.h"
 
 int main() {
 	Game game;

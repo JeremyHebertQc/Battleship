@@ -32,6 +32,11 @@ void Ship::updateSunkStatus()
 		return;
 	}
 
+	for (int i = 0; i < getLength(); i++)
+	{
+		_points[i].setColor(SHIP_SUNK_COLOR);	
+	}
+
 	_hasSunk = true;
 }
 
@@ -104,14 +109,7 @@ void Ship::hide()
 {
 	for (int i = 0; i < getLength(); i++)
 	{
-		if (_direction == HORIZONTAL)
-		{
-			_points[i].setColor(SHIP_HIDDEN_COLOR);
-		}
-		else
-		{
-			_points[i].setColor(SHIP_HIDDEN_COLOR);
-		}
+		_points[i].setColor(SHIP_HIDDEN_COLOR);
 	}
 }
 

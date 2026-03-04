@@ -1,4 +1,5 @@
 #include <iostream>
+#include <assert.h>
 
 #include "Rect.h"
 #include "Point.h"
@@ -36,54 +37,26 @@ const Point& Rect::getPosition() const{
 }
 
 void Rect::setWidth(int w){
-	if (w < 0) {
-		cout << endl << "Erreur: largeur invalide" << endl;
-		system("pause>NUL");
-		exit(1);
-	}
+	assert(w >= 0);
 	
 	_w = w;
 }
 
 void Rect::setHeight(int h){
-	if (h < 0) {
-		cout << endl << "Erreur: hauteur invalide" << endl;
-		system("pause>NUL");
-		exit(2);
-	}
+	assert(h >= 0);
 
 	_h = h;
 }
 
 void Rect::setSize(int w, int h){
-	if (w < 0) {
-		cout << endl << "Erreur: largeur invalide" << endl;
-		system("pause>NUL");
-		exit(1);
-	}
-
-	if (h < 0) {
-		cout << endl << "Erreur: hauteur invalide" << endl;
-		system("pause>NUL");
-		exit(2);
-	}
+	assert(w >= 0 && h >= 0);
 
 	setWidth(w);
 	setHeight(h);
 }
 
 void Rect::setRectangle(int x, int y, int w, int h){
-	if (w < 0) {
-		cout << endl << "Erreur: largeur invalide" << endl;
-		system("pause>NUL");
-		exit(1);
-	}
-
-	if (h < 0) {
-		cout << endl << "Erreur: hauteur invalide" << endl;
-		system("pause>NUL");
-		exit(2);
-	}
+	assert(w >= 0 && h >= 0 && x >= 0 && y >= 0);
 
 	_coord.setPosition(x, y);
 	setSize(w, h);

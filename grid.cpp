@@ -178,8 +178,6 @@ void Grid::draw(std::ostream& output) const
 		_ships[i].draw(output);
 	}
 
-	printShipsStatus(output);
-
 	// Affichage des tirs manqués
 	for (int i = 0; i < _nbMissedHits; i++)
 	{
