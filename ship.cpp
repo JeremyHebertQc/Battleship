@@ -175,16 +175,16 @@ void Ship::draw(std::ostream& output) const
 
 void Ship::read(std::istream& input)
 {
-	std::string length;
+	//std::string length;
 
-	input >> _name >> length;
-	setLength(length[1]);
+	//input >> _name >> length;
+	//setLength(length[1] - '0');
 
-	//char trash;
-	//int length;
-	// 
-	//input >> _name >> trash >> length >> trash;
-	//setLength(length);
+	char trash;
+	int length;
+	 
+	input >> _name >> trash >> length >> trash;
+	setLength(length);
 }
 
 std::ostream& operator<<(std::ostream& output, const Ship& ship)
