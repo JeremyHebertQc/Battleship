@@ -326,7 +326,7 @@ void sauvegarderFichier(const string &nomFichier, const Point tabPoints[], int l
 
 		fichierSortie.close();
 
-		cout << "Données sauvegardées dans " << nomFichier << endl;
+		cout << "DonnÃ©es sauvegardÃ©es dans " << nomFichier << endl;
 	}
 	else
 	{

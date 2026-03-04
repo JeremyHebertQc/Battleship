@@ -163,7 +163,7 @@ int Ship::placeHit(const Point& hitPosition)
 
 void Ship::print(std::ostream& output) const
 {
-	output << _name << " (" << _length << ")" << ": " << _points[0].getX() << " " << _points[0].getY() << std::endl;
+	output << _name << " (" << _length << ")";
 }
 
 void Ship::draw(std::ostream& output) const
