@@ -7,7 +7,7 @@
 
 #include "Point.h"
 
-using namespace std;
+//using namespace std; // TODO: Retirer
 
 Point::Point()
 {
@@ -93,18 +93,19 @@ void Point::setPoint(const int x, const int y, const int color)
 	_color = color;
 }
 
-void Point::draw(ostream& os) const
+void Point::draw(std::ostream& os) const
 {
 	goToXY(_x, _y);
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _color);
 
-	os << "\xFE";
+	char carre = 219;
+	os << carre;
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 
-void Point::print(ostream &os) const
+void Point::print(std::ostream &os) const
 {
 	os << "(" << _x << "," << _y << ") " << _color;
 }
@@ -158,14 +159,14 @@ bool Point::operator<=(const Point& autrePoint) const
 	return operator<(autrePoint) || operator==(autrePoint);
 }
 
-ostream& operator<<(ostream& os, const Point& Point)
+std::ostream& operator<<(std::ostream& os, const Point& Point)
 {
 	Point.print(os);
 
 	return os;
 }
 
-istream& operator>>(istream& is, Point& Point)
+std::istream& operator>>(std::istream& is, Point& Point)
 {
 	Point.read(is);
 
@@ -193,19 +194,19 @@ void goToXY(int xpos, int ypos)
 	SetConsoleCursorPosition(hOuput, scrn);
 }
 
-void ouvrirFichier(ifstream& monFlux, const string &nomFichier)
+void ouvrirFichier(std::ifstream& monFlux, const std::string &nomFichier)
 {
 	monFlux.open(nomFichier);
 	if (!monFlux.is_open() || monFlux.peek() == EOF)
 	{
-		cout << "Erreur de lecture du fichier" << endl;
+		std::cout << "Erreur de lecture du fichier" << std::endl;
 		system("pause>NUL");
 		exit(1);
 	}
 }
 
 
-int lireFichier(ifstream& monFlux, Point tabPoints[])
+int lireFichier(std::ifstream& monFlux, Point tabPoints[])
 {
 	int cpt = 0;
 	
@@ -220,114 +221,7 @@ int lireFichier(ifstream& monFlux, Point tabPoints[])
 	return cpt;
 }
 
-void afficherForme(const Point tabPoints[], int longueur, std::ostream &monFlux)
-{
-	for (int i = 0; i < longueur; i++)
-	{
-		tabPoints[i].draw(monFlux);
-	}
-
-}
-
 void fermerFichier(std::ifstream &monFlux)
 {
 	monFlux.close();
-}
-
-void afficherMenu()
-{
-	system("cls");
-
-	cout << "Menu de l'application" << endl
-		<< "--------------------------------------------" << endl
-		<< "0 - Quitter" << endl
-		<< "1 - Afficher une forme" << endl
-		<< "2 - Faire mon dessin" << endl << endl;
-}
-
-int paint(Point tabPoints[])
-{
-	int longueur = 0;
-	int x = 0;
-	int y = 0;
-	system("cls");
-
-	do
-	{
-		char key = _getch();
-		
-		if (key == 32)
-			longueur++;
-		else if (key == 'q')
-			return longueur;
-		else if (key == 'e')
-			if (tabPoints[longueur].getColor() == 25)
-				tabPoints[longueur].setColor(0);
-			else
-				tabPoints[longueur].setColor(tabPoints[longueur].getColor() + 1);
-		else
-		{
-			moveCursor(x, y, key);
-			tabPoints[longueur].setX(x);
-			tabPoints[longueur].setY(y);
-			tabPoints[longueur].setColor(tabPoints[longueur].getColor());
-			system("cls");
-			afficherForme(tabPoints, longueur + 1, cout);
-		}
-	} while (true);
-
-	return longueur;
-}
-
-void moveCursor(int &xpos, int &ypos, char direction)
-{
-	switch (direction)
-	{
-	case-32:
-		break;
-	case 'w':
-	case 72:
-		if (ypos > 0)
-			ypos--;
-		break;
-	case 's':
-	case 80:
-		if (ypos < 20)
-			ypos++;
-		break;
-	case 'a':
-	case 75:
-		if (xpos > 0)
-			xpos--;
-		break;
-	case 'd':
-	case 77:
-		if (xpos < 50)
-			xpos++;
-		break;
-	default:
-		cout << "Deplacement impossible!";
-		break;
-	}
-}
-
-void sauvegarderFichier(const string &nomFichier, const Point tabPoints[], int longueur)
-{
-	ofstream fichierSortie(nomFichier);
-
-	if (fichierSortie.is_open())
-	{
-		for (int i = 0; i < longueur; i++)
-		{
-			tabPoints[i].print(fichierSortie);
-		}
-
-		fichierSortie.close();
-
-		cout << "Données sauvegardées dans " << nomFichier << endl;
-	}
-	else
-	{
-		cout << "Impossible d'ouvrir le fichier " << nomFichier << " pour sauvegarde." << endl;
-	}
 }

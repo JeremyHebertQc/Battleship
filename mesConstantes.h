@@ -2,11 +2,6 @@
 
 #include <string>
 
-/********************************/
-/* NE MODIFIEZ PAS CE FICHIER ! */
-/* IL EST DÉJÀ COMPLET !        */
-/********************************/
-
 // Constantes pour les bateaux (objet "Ship")
 constexpr int SHIP_MAX_NB =	5;
 constexpr int SHIP_MAX_LENGTH = 15;

@@ -4,101 +4,113 @@
 #include "Rect.h"
 #include "Point.h"
 
-using namespace std;
-
-Rect::Rect(){
+// Constructeurs
+Rect::Rect()
+{
 	_coord = Point();
 	_w = 0;
 	_h = 0;
 }
 
-Rect::Rect(const int x, const int y, const int w, const int h){
+Rect::Rect(const int x, const int y, const int w, const int h)
+{
 	setRectangle(x, y, w, h);
 }
 
-Rect::~Rect(){
-	_w = _h = 0;
+// Destructeur
+Rect::~Rect()
+{
+	_w = 0;
+	_h = 0;
 }
 
-const int Rect::getWidth() const{
+// Getters
+const int Rect::getWidth() const
+{
 	return _w;
 }
 
-const int Rect::getHeight() const{
+const int Rect::getHeight() const
+{
 	return _h;
 }
 
-Point& Rect::getPosition(){
+Point& Rect::getPosition()
+{
 	return _coord;
 }
 
-const Point& Rect::getPosition() const{
+const Point& Rect::getPosition() const
+{
 	return _coord.getPoint();
 }
 
-void Rect::setWidth(int w){
+// Setters
+void Rect::setWidth(int w)
+{
 	assert(w >= 0);
 	
 	_w = w;
 }
 
-void Rect::setHeight(int h){
+void Rect::setHeight(int h)
+{
 	assert(h >= 0);
 
 	_h = h;
 }
 
-void Rect::setSize(int w, int h){
+void Rect::setSize(int w, int h)
+{
 	assert(w >= 0 && h >= 0);
 
 	setWidth(w);
 	setHeight(h);
 }
 
-void Rect::setRectangle(int x, int y, int w, int h){
+void Rect::setRectangle(int x, int y, int w, int h)
+{
 	assert(w >= 0 && h >= 0 && x >= 0 && y >= 0);
 
 	_coord.setPosition(x, y);
 	setSize(w, h);
 }
 
-void Rect::read(istream &flux){
+void setColor(int color, Rect& r1)
+{
+	r1._coord.setColor(color);
+}
+
+// Méthodes de gestion des flux
+void Rect::read(std::istream &flux)
+{
 	char trash;
 
 	_coord.read(flux);
 	flux >> _w >> trash >> _h;
 }
 
-void Rect::print(std::ostream &flux) const{
+void Rect::print(std::ostream &flux) const
+{
 	_coord.print(flux);
-	flux << " " << _w << " X " << _h << endl;
+	flux << " " << _w << " X " << _h << std::endl;
 }
 
-void Rect::draw(std::ostream &flux, int color) const{
+void Rect::draw(std::ostream &flux, int color) const
+{
 	Point temp;	
 
-	for (int i = 0; i < _h; i++){
-		for (int j = 0; j < _w; j++){
-			if (i == 0 || i == _h - 1 || j == 0 || j == _w - 1) {
+	for (int i = 0; i < _h; i++)
+	{
+		for (int j = 0; j < _w; j++)
+		{
+			if (i == 0 || i == _h - 1 || j == 0 || j == _w - 1)
+			{
 				temp.setPoint(_coord.getX() + j, _coord.getY() + i, color);
 
-				temp.draw(cout);
+				temp.draw(std::cout);
 			}
-
 		}
-
-		cout << endl;
+		std::cout << std::endl;
 	}
-}
-
-int Rect::surface() const{
-	return (2 * _w + 2 * _h);
-}
-
-int Rect::perimetre() const{
-	return (_w * _h);
-}
-
-void setColor(int color, Rect& r1){
-	r1._coord.setColor(color);
 }

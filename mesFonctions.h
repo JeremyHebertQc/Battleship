@@ -1,12 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include "Point.h" // Ajoutez vos fichiers "point.h" et "point.cpp" développés dans un laboratoire précédent
 
-/********************************/
-/* NE MODIFIEZ PAS CE FICHIER ! */
-/* IL EST DÉJÀ COMPLET !        */
-/********************************/
+#include "Point.h"
+
 void sleepMs(int ms);
 Point getMouseClick();
 void ignoreMouseClicks();

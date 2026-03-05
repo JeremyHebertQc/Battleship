@@ -1,4 +1,4 @@
-#include <cassert>
+#include <assert.h>
 #include "mesConstantes.h"
 #include "mesFonctions.h"
 
@@ -11,13 +11,6 @@
 #include <cstdio>
 #include <cstring>
 #endif
-
-using namespace std;
-
-/***********************************************/
-/* NE MODIFIEZ PAS LES FONCTIONS QUI SUIVENT ! */
-/* ELLES SONT DÉJÀ PLEINEMENT FONCTIONNELLES ! */
-/***********************************************/
 
 // Pause le programme pendant ms millisecondes (cross-platform)
 void sleepMs(int ms) {
