@@ -20,7 +20,7 @@ public:
 	const int getWidth() const;
 	const int getHeight() const;
 	Point& getPosition();
-	const Point &getPosition() const;
+	const Point& getPosition() const;
 	
 	// Setters
 	void setWidth(int w);
@@ -30,8 +30,7 @@ public:
 	friend void setColor(int color, Rect& r1);
 
 	// Gestion de flux
-	void read(std::istream &flux);
-	void print(std::ostream &flux) const;
-	void draw(std::ostream &flux, int color) const;
+	void read(std::istream& flux);
+	void print(std::ostream& flux) const;
+	void draw(std::ostream& flux, int color) const;
 };
-

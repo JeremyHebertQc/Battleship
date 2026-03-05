@@ -21,6 +21,7 @@ class Game {
 		// Autres méthodes
 		void play(std::ostream& output);
 		void draw(std::ostream& output) const;
+		void displayCursor(bool interrupter);
 };
 
 // Surcharge des opérateurs

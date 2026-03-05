@@ -1,16 +1,17 @@
 #include <assert.h>
 #include <fstream>
+
 #include "grid.h"
 
 // Méthodes privées
 bool Grid::initShips()
 {
-	std::ifstream monFlux;
+	std::ifstream flux;
 
 	// Lecture du fichier
-	ouvrirFichier(monFlux, GRID_SHIPS_FILENAME);
-	read(monFlux);
-	fermerFichier(monFlux);
+	ouvrirFichier(flux, GRID_SHIPS_FILENAME);
+	read(flux);
+	fermerFichier(flux);
 
 	// Placement des navires
 	if (placeShips())
@@ -30,7 +31,7 @@ bool Grid::placeShips()
 	{
 		do
 		{
-			if ((_ships[i].getLength() > (GRID_WIDTH - 2)) || (_ships[i].getLength() > (GRID_HEIGHT - 2)))
+			if ((_ships[i].getLength() > (GRID_WIDTH - 2)) || (_ships[i].getLength() > (GRID_HEIGHT - 2))) // Ligne fournis dans le fichier de départ
 			{
 				return false;
 			}

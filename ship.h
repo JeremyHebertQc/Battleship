@@ -1,13 +1,10 @@
 #pragma once
 
 #include <iostream>
+
 #include "mesConstantes.h"
 #include "Point.h"
 
-/********************************/
-/* NE MODIFIEZ PAS CE FICHIER ! */
-/* IL EST DÉJÀ COMPLET !        */
-/********************************/
 enum Direction {
 	HORIZONTAL,
 	VERTICAL

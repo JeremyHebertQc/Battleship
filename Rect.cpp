@@ -78,11 +78,13 @@ void Rect::setRectangle(int x, int y, int w, int h)
 
 void setColor(int color, Rect& r1)
 {
+	assert(color >= 0);
+
 	r1._coord.setColor(color);
 }
 
 // Gestion de flux
-void Rect::read(std::istream &flux)
+void Rect::read(std::istream& flux)
 {
 	char trash;
 
@@ -90,13 +92,13 @@ void Rect::read(std::istream &flux)
 	flux >> _w >> trash >> _h;
 }
 
-void Rect::print(std::ostream &flux) const
+void Rect::print(std::ostream& flux) const
 {
 	_coord.print(flux);
 	flux << " " << _w << " X " << _h << std::endl;
 }
 
-void Rect::draw(std::ostream &flux, int color) const
+void Rect::draw(std::ostream& flux, int color) const
 {
 	Point temp;	
 
@@ -108,9 +110,9 @@ void Rect::draw(std::ostream &flux, int color) const
 			{
 				temp.setPoint(_coord.getX() + j, _coord.getY() + i, color);
 
-				temp.draw(std::cout);
+				temp.draw(flux);
 			}
 		}
-		std::cout << std::endl;
+		flux << std::endl;
 	}
 }

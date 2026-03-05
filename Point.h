@@ -12,7 +12,7 @@ public:
 	// Constructeurs
 	Point();
 	Point(int x, int y);
-	Point(const Point &p);
+	Point(const Point& p);
 
 	// Destructeur
 	~Point();
@@ -31,28 +31,28 @@ public:
 	void setPoint(const int x, const int y, const int color);
 
 	// Gestion de flux
-	void draw(std::ostream &os) const;
-	void print(std::ostream &os) const;
-	void read(std::istream &monFlux);
+	void draw(std::ostream& os) const;
+	void print(std::ostream& os) const;
+	void read(std::istream& flux);
 	
 	// Surcharge des opérateurs
-	const Point& operator=(const Point &autrePoint);
-	bool operator==(const Point &autrePoint) const;
-	bool operator!=(const Point &autrePoint) const;
-	bool operator>(const Point & autrePoint) const;
-	bool operator<(const Point& autrePoint) const;
-	bool operator>=(const Point &autrePoint) const;
-	bool operator<=(const Point &autrePoint) const;
-	friend std::ostream& operator<<(std::ostream& os, const Point &Point);
-	friend std::istream& operator>>(std::istream& os, Point &Point);
-	Point operator+( Point &autrePoint);
-	Point operator-( Point &autrePoint);
+	const Point& operator=(const Point& otherPoint);
+	bool operator==(const Point& otherPoint) const;
+	bool operator!=(const Point& otherPoint) const;
+	bool operator>(const Point& otherPoint) const;
+	bool operator<(const Point& otherPoint) const;
+	bool operator>=(const Point& otherPoint) const;
+	bool operator<=(const Point& otherPoint) const;
+	friend std::ostream& operator<<(std::ostream& os, const Point& Point);
+	friend std::istream& operator>>(std::istream& os, Point& Point);
+	Point operator+(Point& otherPoint);
+	Point operator-(Point& otherPoint);
 };
 
 // Déplacement dans la grille
 void goToXY(int xpos, int ypos);
 
 // Gestion des fichiers
-void ouvrirFichier(std::ifstream& monFlux, const std::string& nomFichier);
-int lireFichier(std::ifstream &monFlux, Point tabPoints[]);
-void fermerFichier(std::ifstream &monFlux);
+void ouvrirFichier(std::ifstream& flux, const std::string& fileName);
+int lireFichier(std::ifstream& flux, Point tabPoints[]);
+void fermerFichier(std::ifstream& flux);
