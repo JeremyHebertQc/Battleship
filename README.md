@@ -6,16 +6,16 @@ Battleship - Projet scolaire
   - [ ] L’ensemble des fichiers .h et .cpp du projet
   - [ ] Capsule vidéo présente et respecte la demande
 - [ ] Respect des normes			  10 points
-  - [ ] Noms de variables significatifs et homogènes qui respectent les normes 
-  - [ ] (« camelCase », aération, indentation, etc.)
+  - [X] Noms de variables significatifs et homogènes qui respectent les normes 
+  - [X] (« camelCase », aération, indentation, etc.)
   - [ ] Librairies nécessaires seulement et incluses correctement sans doublons
 - [ ] Jeu d’essais				  10 points
   - [ ] Tests complets et clairs
-- [ ] Qualité de l’interface 				    5 points
-- [ ] Fonctionnalité du programme (simplicité et efficacité)				   25points
-- [ ] Classes des objets bien construites et complètes 				  40 points
-  - [ ] Classes bien construites qui contiennent les propriétés et méthodes prévues (sans plus)
-  - [ ] Classes sécuritaires (assert() et const convenablement intégrés)
+- [X] Qualité de l’interface 				    5 points
+- [X] Fonctionnalité du programme (simplicité et efficacité)				   25points
+- [X] Classes des objets bien construites et complètes 				  40 points
+  - [X] Classes bien construites qui contiennent les propriétés et méthodes prévues (sans plus)
+  - [X] Classes sécuritaires (assert() et const convenablement intégrés)
 				Total : 	100 points
 
 ## Capsule vidéo
