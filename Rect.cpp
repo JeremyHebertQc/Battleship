@@ -81,7 +81,7 @@ void setColor(int color, Rect& r1)
 	r1._coord.setColor(color);
 }
 
-// Méthodes de gestion des flux
+// Gestion de flux
 void Rect::read(std::istream &flux)
 {
 	char trash;

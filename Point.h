@@ -49,7 +49,7 @@ public:
 	Point operator-( Point &autrePoint);
 };
 
-
+// Déplacement dans la grille
 void goToXY(int xpos, int ypos);
 
 // Gestion des fichiers

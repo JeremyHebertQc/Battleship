@@ -2,10 +2,7 @@
 
 #include "ship.h"
 
-/********************************************/
-/* NE MODIFIEZ PAS LA MÉTHODE QUI SUIT !    */
-/* ELLE EST DÉJÀ PLEINEMENT FONCTIONNELLE ! */
-/********************************************/
+// Méthodes privées
 void Ship::updatePoints() {
 	for (int i = 0; i < _length; i++)
 	{
@@ -40,6 +37,7 @@ void Ship::updateSunkStatus()
 	_hasSunk = true;
 }
 
+// Constructeur
 Ship::Ship(const std::string& name, int length)
 {
 	_name = name;
@@ -48,6 +46,7 @@ Ship::Ship(const std::string& name, int length)
 	setLength(length);
 }
 
+// Destructeur
 Ship::~Ship()
 {
 	_name = "";
@@ -56,6 +55,7 @@ Ship::~Ship()
 	_length = 0;
 }
 
+// Getters
 int Ship::getLength() const
 {
 	return _length;
@@ -71,6 +71,7 @@ bool Ship::getSunkStatus() const
 	return _hasSunk;
 }
 
+// Setters
 void Ship::setPosition(int x, int y)
 {
 	assert(x >= 0 && y >= 0);
@@ -95,6 +96,7 @@ void Ship::setDirection(const Direction& direction)
 	updatePoints();
 }
 
+// Gestion des navires
 void Ship::rotate()
 {
 	if (_direction)
@@ -127,6 +129,7 @@ bool Ship::checkCollision(const Ship& otherShip) const
 	return false;
 }
 
+
 int Ship::placeHit(const Point& hitPosition)
 {
 	for (Point& point : _points)
@@ -151,6 +154,7 @@ int Ship::placeHit(const Point& hitPosition)
 	return MISSED_SHIP;
 }
 
+// Gestion de flux
 void Ship::print(std::ostream& output) const
 {
 	output << _name << " (" << _length << ")";
@@ -165,11 +169,6 @@ void Ship::draw(std::ostream& output) const
 
 void Ship::read(std::istream& input)
 {
-	//std::string length;
-
-	//input >> _name >> length;
-	//setLength(length[1] - '0');
-
 	char trash;
 	int length;
 	 
@@ -177,6 +176,7 @@ void Ship::read(std::istream& input)
 	setLength(length);
 }
 
+// Surcharge des opérateurs
 std::ostream& operator<<(std::ostream& output, const Ship& ship)
 {
 	ship.draw(output);

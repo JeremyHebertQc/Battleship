@@ -8,6 +8,7 @@
 /* CODEZ ICI LES MÉTHODES DE LA CLASSE "GAME". */
 /***********************************************/
 
+// Constructeur
 Game::Game()
 {
 	_currentPlayerIndex = 0;
@@ -16,12 +17,14 @@ Game::Game()
 	srand(time(NULL));
 }
 
+// Destructeur
 Game::~Game()
 {
 	_currentPlayerIndex = 0;
 	_gameOver = false;
 }
 
+// Autres méthodes
 void Game::play(std::ostream& output)
 {
 	do
@@ -59,6 +62,7 @@ void Game::draw(std::ostream& output) const
 	_grids[_currentPlayerIndex].printShipsStatus(output);
 }
 
+// Surcharge des opérateurs
 std::ostream& operator<<(std::ostream& output, const Game& game)
 {
 	game.draw(output);

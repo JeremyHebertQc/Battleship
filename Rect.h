@@ -29,7 +29,7 @@ public:
 	void setRectangle(int x, int y, int w, int h);
 	friend void setColor(int color, Rect& r1);
 
-	// Méthodes de gestion des flux
+	// Gestion de flux
 	void read(std::istream &flux);
 	void print(std::ostream &flux) const;
 	void draw(std::ostream &flux, int color) const;

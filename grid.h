@@ -16,7 +16,8 @@ class Grid {
 		Point _missedHits[GRID_WIDTH * GRID_HEIGHT];
 		int _nbShips,
 			_nbMissedHits;
-
+		
+		// Méthodes privées
 		bool initShips();
 		bool placeShips();
 		void hideShips();
@@ -28,20 +29,18 @@ class Grid {
 		// Destructeur
 		~Grid();
 
-		// Getters
+		// Getter
 		int getNbRemainingShips() const;
 
-		// Méthode de vérification des tires
+		// Gestion des tirs
 		bool placeHit(const Point& hitPosition);
 
-		// Méthode d'affichage de la grille
+		// Gestion de flux
 		void printShipsStatus(std::ostream& output) const;
 		void draw(std::ostream& output) const;
-		
-		// Méthode de saisie de la grille
 		void read(std::istream& input);
 };
 
-// Surchage des opérateur
+// Surchage des opérateurs
 std::ostream& operator<<(std::ostream& output, const Grid& grid); // Méthode d'affichage de la grille
 std::istream& operator>>(std::istream& input, Grid& grid); // Méthode de saisie de la grille

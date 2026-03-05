@@ -7,8 +7,7 @@
 
 #include "Point.h"
 
-//using namespace std; // TODO: Retirer
-
+// Constructeurs
 Point::Point()
 {
 	_x = 0;
@@ -30,11 +29,13 @@ Point::Point(const Point &p)
 	_color = p._color;
 }
 
+// Destructeur 
 Point::~Point()
 {
 	_x = _y = _color = 0;
 }
 
+// Getters
 int Point::getX() const
 {
 	return _x;
@@ -55,6 +56,7 @@ Point Point::getPoint() const
 	return *this;
 }
 
+// Setters
 void Point::setX(const int x)
 {
 	assert(x >= 0);
@@ -93,6 +95,7 @@ void Point::setPoint(const int x, const int y, const int color)
 	_color = color;
 }
 
+// Gestion de flux
 void Point::draw(std::ostream& os) const
 {
 	goToXY(_x, _y);
@@ -117,6 +120,7 @@ void Point::read(std::istream &monFlux)
 	monFlux >> trash >> _x >> trash >> _y >> trash >> _color;
 }
 
+// Surcharge des opérateurs
 const Point& Point::operator=(const Point& autrePoint)
 {
 	_x = autrePoint._x;
@@ -182,6 +186,7 @@ Point Point::operator-(Point& autrePoint){
 	return Point(_x - autrePoint._x, _y - autrePoint._y);
 }
 
+// Déplacement dans la grille
 void goToXY(int xpos, int ypos)
 {
 	COORD scrn = { 0 };
@@ -194,6 +199,7 @@ void goToXY(int xpos, int ypos)
 	SetConsoleCursorPosition(hOuput, scrn);
 }
 
+// Gestion des fichiers
 void ouvrirFichier(std::ifstream& monFlux, const std::string &nomFichier)
 {
 	monFlux.open(nomFichier);
