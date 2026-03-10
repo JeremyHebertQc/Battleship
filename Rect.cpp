@@ -1,8 +1,8 @@
 #include <iostream>
 #include <assert.h>
 
-#include "Rect.h"
-#include "Point.h"
+#include "rect.h"
+#include "point.h"
 
 // Constructeurs
 Rect::Rect()

@@ -17,54 +17,60 @@ Game::Game()
 Game::~Game()
 {
 	_currentPlayerIndex = 0;
-	_gameOver = false;
+	_gameOver = true;
 }
 
 // Autres méthodes
 void Game::play(std::ostream& output)
 {
 	displayCursor(false);
-	do
+	while (!_gameOver)
 	{
 		_currentPlayerIndex = _currentPlayerIndex % (2);
 
 		do
 		{
-			draw(output);
-		} while (!_grids[_currentPlayerIndex].placeHit(getMouseClick()));
+			draw(output); // Afficher la partie
+		} while (!_grids[_currentPlayerIndex].placeHit(getMouseClick())); // Obtenir et tester la position
 
-		draw(output);
-		sleepMs(750);
+		draw(output); // Afficher la partie
+		sleepMs(500); // attendre 500Ms
 
-		ignoreMouseClicks();
+		ignoreMouseClicks(); // Ignorer les clics de souris survenus durant l'attente
 
 		if (_grids[_currentPlayerIndex].getNbRemainingShips() > 0)
 			_currentPlayerIndex++;
 		else
 			_gameOver = true;
-		
-	} while (!_gameOver);
+	}
 
 	// Affichage du message de fin
-	clearScreen(output);
 	displayCursor(true);
-	output << "VICTOIRE DU JOUEUR " << _currentPlayerIndex + 1 << std::endl
-		<< "Merci d'avoir joue !" << std::endl
-		<< std::endl << std::endl
-		<< "Appuyez sur une touche pour fermer le jeu...";
-	system("pause>NUL");
+	draw(output);
 }
 
 void Game::draw(std::ostream& output) const
 {
 	clearScreen(output);
 
-	output << "JEU DE BATTLESHIP : cliquez dans la grille pour tirer" << std::endl
-		<< std::endl
-		<< "TOUR DU JOUEUR " << _currentPlayerIndex + 1;
+	if (_gameOver)
+	{
+		output << "VICTOIRE DU JOUEUR " << _currentPlayerIndex + 1 << std::endl
+			<< "Merci d'avoir joue !" << std::endl
+			<< std::endl << std::endl
+			<< "Appuyez sur une touche pour fermer le jeu...";
+		system("pause>NUL");
+	}
+	else
+	{
+		output << "JEU DE BATTLESHIP : cliquez dans la grille pour tirer" << std::endl
+			<< std::endl
+			<< "TOUR DU JOUEUR " << _currentPlayerIndex + 1;
 
-	_grids[_currentPlayerIndex].draw(output);
-	_grids[_currentPlayerIndex].printShipsStatus(output);
+		_grids[_currentPlayerIndex].draw(output);
+		_grids[_currentPlayerIndex].printShipsStatus(output);
+	}
+	
 }
 
 void Game::displayCursor(bool interrupter)

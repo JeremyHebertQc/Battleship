@@ -5,7 +5,7 @@
 #include <fstream>
 #include <conio.h>
 
-#include "Point.h"
+#include "point.h"
 
 // Constructeurs
 Point::Point()

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "Point.h"
+#include "point.h"
 
 void sleepMs(int ms);
 Point getMouseClick();

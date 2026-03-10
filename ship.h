@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "mesConstantes.h"
-#include "Point.h"
+#include "point.h"
 
 enum Direction {
 	HORIZONTAL,

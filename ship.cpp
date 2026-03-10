@@ -1,4 +1,4 @@
-#include <assert.h>
+#include <cassert>
 
 #include "ship.h"
 
@@ -22,17 +22,12 @@ void Ship::updatePoints() {
 
 void Ship::updateSunkStatus()
 {
-	for (int i = 0; i < _length; i++)
-	{
-		if (_points[i].getColor() == SHIP_HIT_COLOR)
-			continue;
+	for (int i = 0; i < getLength(); i++)
+		if (_points[i].getColor() != SHIP_HIT_COLOR)
 		return;
-	}
 
 	for (int i = 0; i < getLength(); i++)
-	{
-		_points[i].setColor(SHIP_SUNK_COLOR);	
-	}
+		_points[i].setColor(SHIP_SUNK_COLOR);
 
 	_hasSunk = true;
 }
@@ -41,16 +36,20 @@ void Ship::updateSunkStatus()
 Ship::Ship(const std::string& name, int length)
 {
 	_name = name;
-	_x = _y = _hasSunk = false;
+	_x = _y = 0;
+	_hasSunk = false;
 	_direction = HORIZONTAL;
 	setLength(length);
+
+	updatePoints();
 }
 
 // Destructeur
 Ship::~Ship()
 {
 	_name = "";
-	_x = _y = _hasSunk = false;
+	_x = _y = 0;
+	_hasSunk = false;
 	_direction = HORIZONTAL;
 	_length = 0;
 }
@@ -87,6 +86,8 @@ void Ship::setLength(int length)
 	assert(length >= 0 && length <= SHIP_MAX_LENGTH);
 
 	_length = length;
+
+	updatePoints();
 }
 
 void Ship::setDirection(const Direction& direction)
@@ -110,46 +111,35 @@ void Ship::rotate()
 void Ship::hide()
 {
 	for (int i = 0; i < getLength(); i++)
-	{
 		_points[i].setColor(SHIP_HIDDEN_COLOR);
-	}
 }
 
 bool Ship::checkCollision(const Ship& otherShip) const
 {
 	for (int i = 0; i < getLength(); i++)
-	{
 		for (int j = 0; j < otherShip.getLength(); j++)
-		{
 			if (_points[i].getX() == otherShip._points[j].getX() && _points[i].getY() == otherShip._points[j].getY())
 				return true;
-		}
-	}
 
 	return false;
 }
 
-
 int Ship::placeHit(const Point& hitPosition)
 {
-	for (Point& point : _points)
-	{
-		if (hitPosition == point)
-		{
-			if (_hasSunk)
+	for (int i = 0; i < getLength(); i++)
+		if (hitPosition == _points[i])
+			if (getSunkStatus())
 				return SHIP_SUNK;
-			else if (point.getColor() == SHIP_HIT_COLOR)
+			else if (_points[i].getColor() == SHIP_HIT_COLOR)
 				return SHIP_HIT_TWICE;
 			else
 			{
-				point.setColor(SHIP_HIT_COLOR);
+				_points[i].setColor(SHIP_HIT_COLOR);
 
 				updateSunkStatus();
 
 				return SHIP_HIT;
 			}
-		}	
-	}
 
 	return MISSED_SHIP;
 }
@@ -157,14 +147,13 @@ int Ship::placeHit(const Point& hitPosition)
 // Gestion de flux
 void Ship::print(std::ostream& output) const
 {
-	output << _name << " (" << _length << ")";
+	output << _name << " (" << getLength() << ")";
 }
 
 void Ship::draw(std::ostream& output) const
 {
-	for (int i = 0; i < _length; i++)
+	for (int i = 0; i < getLength(); i++)
 		_points[i].draw(output);
-	
 }
 
 void Ship::read(std::istream& input)

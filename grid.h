@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "mesConstantes.h"
-#include "Rect.h"
+#include "rect.h"
 #include "ship.h"
 
 /********************************/

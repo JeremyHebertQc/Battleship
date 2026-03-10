@@ -14,7 +14,8 @@
 #endif
 
 // Pause le programme pendant ms millisecondes (cross-platform)
-void sleepMs(int ms) {
+void sleepMs(int ms)
+{
 #ifdef _WIN32
 	Sleep(ms);
 #else
@@ -23,7 +24,8 @@ void sleepMs(int ms) {
 }
 
 // Attend un clic de souris et retourne la position du clic sous forme de Point
-Point getMouseClick() {
+Point getMouseClick()
+{
 #ifdef _WIN32
 	bool clicked = false;
 
@@ -35,13 +37,17 @@ Point getMouseClick() {
 	DWORD fdwMode = ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT;
 	SetConsoleMode(hStdin, fdwMode);
 
-	while (!clicked) {
+	while (!clicked)
+	{
 		ReadConsoleInput(hStdin, irInBuf, 128, &cNumRead);
 
-		for (DWORD i = 0; i < cNumRead; ++i) {
-			if (irInBuf[i].EventType == MOUSE_EVENT) {
+		for (DWORD i = 0; i < cNumRead; ++i)
+		{
+			if (irInBuf[i].EventType == MOUSE_EVENT)
+			{
 				mer = irInBuf[i].Event.MouseEvent;
-				if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
+				if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED)
+				{
 					clicked = true;
 					break;
 				}
@@ -68,10 +74,13 @@ Point getMouseClick() {
 	size_t bufLen = 0;
 	bool done = false;
 
-	while (!done) {
+	while (!done)
+	{
 		char c;
-		if (read(STDIN_FILENO, &c, 1) > 0) {
-			if (bufLen < sizeof(buf) - 1) {
+		if (read(STDIN_FILENO, &c, 1) > 0)
+		{
+			if (bufLen < sizeof(buf) - 1)
+			{
 				buf[bufLen++] = c;
 				buf[bufLen] = '\0';
 			}
@@ -79,10 +88,13 @@ Point getMouseClick() {
 			// Format SGR : ESC [ < b ; x ; y M (press) ou m (release)
 			// Accepter uniquement 'M' (press), pas 'm' (release), pour éviter
 			// qu'un même clic physique soit compté pour les deux joueurs
-			if (c == 'M' || c == 'm') {
+			if (c == 'M' || c == 'm')
+			{
 				int b = 0, px = 0, py = 0;
-				if (sscanf(buf, "\033[<%d;%d;%d", &b, &px, &py) >= 3) {
-					if (c == 'M' && b < 32) {
+				if (sscanf(buf, "\033[<%d;%d;%d", &b, &px, &py) >= 3)
+				{
+					if (c == 'M' && b < 32)
+					{
 						x = px - 1;
 						y = py - 1;
 						done = true;
@@ -91,7 +103,8 @@ Point getMouseClick() {
 				bufLen = 0;
 			}
 			// Réinitialiser si la séquence est trop longue
-			else if (bufLen >= 20) {
+			else if (bufLen >= 20)
+			{
 				bufLen = 0;
 			}
 		}
@@ -109,7 +122,8 @@ Point getMouseClick() {
 
 // Vide la file d'attente des clics de souris. À utiliser après un Sleep pour
 // ignorer les clics survenus pendant celui-ci.
-void ignoreMouseClicks() {
+void ignoreMouseClicks()
+{
 #ifdef _WIN32
 	HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 	DWORD fdwMode = ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT;
@@ -119,10 +133,12 @@ void ignoreMouseClicks() {
 	DWORD cNumRead;
 
 	// Clear any existing input events
-	while (true) {
+	while (true)
+	{
 		PeekConsoleInput(hStdin, irInBuf, 128, &cNumRead);
 
-		if (!cNumRead) {
+		if (!cNumRead)
+		{
 			break;
 		}
 		ReadConsoleInput(hStdin, irInBuf, 128, &cNumRead);
@@ -133,7 +149,8 @@ void ignoreMouseClicks() {
 	fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
 
 	char buf[64];
-	while (read(STDIN_FILENO, buf, sizeof(buf)) > 0) {
+	while (read(STDIN_FILENO, buf, sizeof(buf)) > 0)
+	{
 		;
 	}
 
@@ -143,6 +160,7 @@ void ignoreMouseClicks() {
 
 // Efface l'écran. À utiliser à la place de system("cls") ou system("clear") pour
 // éviter des problèmes avec la fonction getMouseClick.
-void clearScreen(std::ostream& output) {
+void clearScreen(std::ostream& output)
+{
 	output << "\033[2J\033[1;1H";
 }

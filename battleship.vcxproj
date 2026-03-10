@@ -131,8 +131,8 @@
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesFonctions.cpp" />
-    <ClCompile Include="Point.cpp" />
-    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="point.cpp" />
+    <ClCompile Include="rect.cpp" />
     <ClCompile Include="ship.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -140,8 +140,8 @@
     <ClInclude Include="grid.h" />
     <ClInclude Include="mesConstantes.h" />
     <ClInclude Include="mesFonctions.h" />
-    <ClInclude Include="Point.h" />
-    <ClInclude Include="Rect.h" />
+    <ClInclude Include="point.h" />
+    <ClInclude Include="rect.h" />
     <ClInclude Include="ship.h" />
   </ItemGroup>
   <ItemGroup>
