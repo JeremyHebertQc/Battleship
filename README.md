@@ -2,10 +2,10 @@
 Battleship - Projet scolaire
 
 ## Barème de correction - To do list
-- [ ] Remise complète			  10 points
-  - [ ] L’ensemble des fichiers .h et .cpp du projet
-  - [ ] Capsule vidéo présente et respecte la demande
-- [ ] Respect des normes			  10 points
+- [X] Remise complète			  10 points
+  - [X] L’ensemble des fichiers .h et .cpp du projet
+  - [X] Capsule vidéo présente et respecte la demande
+- [X] Respect des normes			  10 points
   - [X] Noms de variables significatifs et homogènes qui respectent les normes 
   - [X] (« camelCase », aération, indentation, etc.)
   - [X] Librairies nécessaires seulement et incluses correctement sans doublons
