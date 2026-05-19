@@ -1,7 +1,7 @@
 /*====================================
 AUTEUR : Jérémy Hébert & Vincent Gagnon
 PROJET : Battleship - TP1
-DATE : 17 février 2026
+DATE : 17 février 2026   
 ====================================*/
 
 #include "game.h"
